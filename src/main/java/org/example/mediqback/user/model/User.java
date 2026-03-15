@@ -1,6 +1,9 @@
 package org.example.mediqback.user.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -14,11 +17,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-
     private String email;
     private String name;
-    private String birthyear;
-    private String gender;
 
     @Setter
     private String password;
@@ -26,6 +26,8 @@ public class User {
     @Setter
     private boolean enable;
 
-    @ColumnDefault(value="ROLE_USER")
+    @ColumnDefault(value="'ROLE_USER'")
     private String role;
+    private String provider; // "KAKAO", "GOOGLE", "LOCAL" 등
+    private String socialId; // 카카오에서 넘어오는 고유 ID값
 }

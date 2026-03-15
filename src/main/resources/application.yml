@@ -3,6 +3,26 @@ jwt:
   expire: ${JWT_EXPIRE}
 
 spring:
+  # 1. 시큐리티 및 OAuth2 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_post
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+  # 2. 메일 설정 (spring 하위)
   mail:
     host: smtp.gmail.com
     port: 587
@@ -17,21 +37,30 @@ spring:
           auth: true
           timeout: 5000
 
+  # 3. 데이터베이스 설정 (spring 하위)
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: ${DB_URL}
-    username: ${DB_NAME}
+    username: ${DB_USER}
     password: ${DB_PASS}
 
+  # 4. JPA 설정 (spring 하위)
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
 
+# 5. 로깅 설정 (최상위)
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.orm.jdbc.bind: trace
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
+project:
+  aes:
+    key: aessecretkey01234567890123456789

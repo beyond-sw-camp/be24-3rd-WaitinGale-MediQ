@@ -25,10 +25,11 @@ public class JwtUtil {
     }
 
     // 로그인 성공 시 JWT 토큰 생성
-    public String createToken(Long idx, String email, String role) {
+    public String createToken(Long idx, String email, String name, String role) {
         return Jwts.builder()
                 .claim("idx", idx)
                 .claim("email", email)
+                .claim("name", name)
                 .claim("role", role)
                 .issuedAt(new Date()) // 발행일
                 .expiration(new Date(System.currentTimeMillis() + expire)) // 만료일
