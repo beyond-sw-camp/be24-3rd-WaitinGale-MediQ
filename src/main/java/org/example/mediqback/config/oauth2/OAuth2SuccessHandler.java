@@ -24,7 +24,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         AuthUserDetails user = (AuthUserDetails) authentication.getPrincipal();
 
-        // 1. JWT 토큰 생성
+        // JWT 토큰 생성
         String jwt = jwtUtil.createToken(
                 user.getIdx(),
                 user.getUsername(),
@@ -32,7 +32,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 user.getRole()
         );
 
-        // 2. 쿠키 대신, 프론트엔드 주소(?token=)에 토큰을 직접 달아서 보냅니다.
+        // 쿠키 대신, 프론트엔드 주소(?token=)에 토큰을 직접 달아서 보냅니다.
         String redirectUrl = "http://localhost:5173/?token=" + jwt;
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
