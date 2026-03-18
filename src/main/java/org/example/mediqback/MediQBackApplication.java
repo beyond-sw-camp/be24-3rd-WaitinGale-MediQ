@@ -11,5 +11,4 @@ public class MediQBackApplication {
     public static void main(String[] args) {
         SpringApplication.run(MediQBackApplication.class, args);
     }
-
 }
