@@ -23,7 +23,7 @@ public class MyPageController {
     private final MedicalHistoryService medicalHistoryService;
     private final PaymentHistoryService paymentHistoryService;
 
-    // 1. 진료 기록 탭 클릭 시 (또는 첫 화면)
+    // 진료 기록 탭 클릭 시 (또는 첫 화면)
     @GetMapping("/medical")
     public ResponseEntity<BaseResponse<List<MedicalHistoryDto.Response>>> getMyMedicalHistory(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
@@ -31,7 +31,7 @@ public class MyPageController {
         return ResponseEntity.ok(BaseResponse.success(medicalHistoryService.getMyMedicalHistory(userIdx)));
     }
 
-    // 처방전 탭 클릭 시 (나중에 PrescriptionService 연결)
+    // 처방전 탭 클릭 시
     @GetMapping("/prescriptions")
     public ResponseEntity<BaseResponse<List<Object>>> getMyPrescriptions(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
@@ -45,13 +45,13 @@ public class MyPageController {
 
         Long userIdx = userDetails.getIdx(); // 현재 로그인한 사용자 식별자 가져오기
 
-        // 서비스 로직을 호출하여 실제 결제 내역 데이터를 반환
+        // 결제 내역 데이터를 반환
         List<PaymentHistoryDto.Response> result = paymentHistoryService.getMyPaymentHistories(userIdx);
 
         return ResponseEntity.ok(BaseResponse.success(result));
     }
 
-    // 검사 결과 탭 클릭 시 (나중에 ResultService 연결)
+    // 검사 결과 탭 클릭 시
     @GetMapping("/results")
     public ResponseEntity<BaseResponse<List<Object>>> getMyResults(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
