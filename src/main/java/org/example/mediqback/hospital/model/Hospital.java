@@ -1,10 +1,10 @@
 package org.example.mediqback.hospital.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,15 +15,15 @@ public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-    private String email;
-    private String name;
-    private String location;
-    private String tell;
 
-    @Setter
-    private String password;
+    @Column(unique = true, nullable = false)
+    private String kakaoPlaceId;
 
-    @Setter
-    private boolean enable;
+    private String name; // 병원명
+    private String address; // 주소
+    private String phone; // 전화번호
+
+    // 예약금 설정
+    private int deposit;
 
 }

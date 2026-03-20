@@ -21,7 +21,7 @@ public class WaitingDto {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
-        public Waiting toEntity(WaitingDto.WaitingReq dto) {
+        public Waiting toEntity(WaitingReq dto) {
             return Waiting.builder()
                     .userIdx(dto.getUserIdx())
                     .hospitalIdx(dto.getHospitalIdx())
@@ -79,5 +79,12 @@ public class WaitingDto {
                     .build();
         }
     }
+
+//    public static class DeleteReq {
+//        private Long hospitalIdx;
+//        private Long userIdx;
+//
+//        public static DeleteReq from
+//    }
 
 }

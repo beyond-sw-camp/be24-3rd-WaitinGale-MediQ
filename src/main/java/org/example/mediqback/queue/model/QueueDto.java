@@ -8,12 +8,12 @@ public class QueueDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class QueueDtoReq {
+    public static class QueueReq {
         private Long hospitalIdx;
         private int currentNo;
         private int lastNo;
 
-        public Queue toEntity(QueueDto.QueueDtoReq dto) {
+        public Queue toEntity(QueueReq dto) {
             return Queue.builder()
                     .hospitalIdx(dto.getHospitalIdx())
                     .currentNo(dto.getCurrentNo())

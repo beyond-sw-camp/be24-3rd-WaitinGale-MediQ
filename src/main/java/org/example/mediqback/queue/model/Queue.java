@@ -20,8 +20,11 @@ public class Queue {
 
     private Long hospitalIdx;
     private int currentNo;
-    @Setter
     private int lastNo;
 
     private LocalDateTime updatedAt;
+
+    public void updateLastNo(int newLastNo) {
+        this.lastNo = newLastNo;
+    }
 }

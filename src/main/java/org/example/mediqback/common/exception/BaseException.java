@@ -1,7 +1,7 @@
 package org.example.mediqback.common.exception;
 
-import lombok.Getter;
 import org.example.mediqback.common.model.BaseResponseStatus;
+import lombok.Getter;
 
 @Getter
 public class BaseException extends RuntimeException{

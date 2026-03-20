@@ -1,72 +1,55 @@
 package org.example.mediqback.hospital.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.hibernate.annotations.processing.Pattern;
-
-import javax.swing.text.html.parser.Entity;
+import lombok.NoArgsConstructor;
 
 public class HospitalDto {
 
+    // 프론트엔드 -> 서버 (병원 정보 확인/저장 요청용)
     @Getter
-    public static class SignupReq {
-        private String email;
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Req {
+        private String kakaoPlaceId;
         private String name;
-        private String password;
-        private String location;
-        private String tell;
+        private String address;
+        private String phone;
 
+        // DTO를 DB에 저장할 Entity로 변환하는 메서드
         public Hospital toEntity() {
             return Hospital.builder()
-                    .email(this.email)
+                    .kakaoPlaceId(this.kakaoPlaceId)
                     .name(this.name)
-                    .password(this.password)
-                    .location(this.location)
-                    .tell(this.tell)
-                    .enable(false)
+                    .address(this.address)
+                    .phone(this.phone)
+                    .deposit(1) // 기본 예약금을 10,000원
                     .build();
         }
     }
 
+    // 서버 -> 프론트엔드 (DB에 저장된 우리 병원 정보 응답용)
+    @Getter
     @Builder
-    @Getter
-    public static class SignupRes {
-        private Long idx;
-        private String email;
+    public static class Res {
+        private Long idx; // 우리 DB의 고유 번호
+        private String kakaoPlaceId;
         private String name;
-        private String location;
-        private String tell;
+        private String address;
+        private String phone;
+        private int deposit; // 예약금
 
-        public static SignupRes from(Hospital entity) {
-            return SignupRes.builder()
+        // Entity를 DTO로 변환하는 메서드
+        public static Res from(Hospital entity) {
+            return Res.builder()
                     .idx(entity.getIdx())
-                    .email(entity.getEmail())
+                    .kakaoPlaceId(entity.getKakaoPlaceId())
                     .name(entity.getName())
-                    .location(entity.getLocation())
-                    .tell(entity.getTell())
-                    .build();
-        }
-
-    }
-
-    @Getter
-    public static class LoginReq {
-        private String email;
-        private String password;
-    }
-
-    @Builder
-    @Getter
-    public static class LoginRes {
-        private Long idx;
-        private String name;
-        private String email;
-
-        public static LoginRes from(Hospital entity) {
-            return LoginRes.builder()
-                    .idx(entity.getIdx())
-                    .email(entity.getEmail())
-                    .name(entity.getName())
+                    .address(entity.getAddress())
+                    .phone(entity.getPhone())
+                    .deposit(entity.getDeposit())
                     .build();
         }
     }

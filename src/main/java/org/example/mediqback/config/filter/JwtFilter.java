@@ -42,25 +42,36 @@ public class JwtFilter extends OncePerRequestFilter {
                 if (cookie.getName().equals("ATOKEN")) {
                     String token = cookie.getValue();
 
-                    // JwtUtil을 통해 토큰에서 정보를 꺼냄.
-                    Long idx = jwtUtil.getUserIdx(token);
-                    String username = jwtUtil.getUsername(token);
-                    String role = jwtUtil.getRole(token);
+                    // try-catch로 감싸서 만료된 토큰 방어
+                    try {
+                        // JwtUtil을 통해 토큰에서 정보를 꺼냄.
+                        Long idx = jwtUtil.getUserIdx(token);
+                        String username = jwtUtil.getUsername(token);
+                        String role = jwtUtil.getRole(token);
 
-                    //시큐리티 전용 유저 객체(AuthUserDetails)를 만듬.
-                    AuthUserDetails user = AuthUserDetails.builder()
-                            .idx(idx)
-                            .username(username)
-                            .role(role)
-                            .build();
+                        // 토큰에서 name 도 꺼냅니다.
+                        String name = jwtUtil.getName(token);
 
-                    //시큐리티 시스템에 "인증된 사용자"라고 등록.
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(
-                            user,
-                            null,
-                            List.of(new SimpleGrantedAuthority(role))
-                    );
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                        //시큐리티 전용 유저 객체(AuthUserDetails)를 만듬.
+                        AuthUserDetails user = AuthUserDetails.builder()
+                                .idx(idx)
+                                .username(username)
+                                .name(name) // 꺼낸 이름 세팅
+                                .role(role)
+                                .build();
+
+                        //시큐리티 시스템에 "인증된 사용자"라고 등록.
+                        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                                user,
+                                null,
+                                List.of(new SimpleGrantedAuthority(role))
+                        );
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                    } catch (Exception e) {
+                        // 만료되거나 잘못된 토큰이면 여기서 에러를 조용히 꿀꺽 삼킵니다.
+                        System.out.println("토큰 검증 실패 (만료 또는 잘못됨): " + e.getMessage());
+                    }
                 }
             }
         }

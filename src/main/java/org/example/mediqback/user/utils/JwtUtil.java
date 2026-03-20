@@ -69,4 +69,14 @@ public class JwtUtil {
 
         return claims.get("role", String.class);
     }
+
+    // 새로 추가된 메서드: 토큰에서 이름(name) 꺼내기
+    public String getName(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getEncodedKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+        return claims.get("name", String.class);
+    }
 }

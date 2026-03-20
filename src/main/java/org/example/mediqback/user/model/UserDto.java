@@ -8,7 +8,6 @@ import lombok.Getter;
 import java.util.Map;
 
 public class UserDto {
-    // 💡 Demo 프로젝트와 동일하게 OAuth용 DTO 추가
     @Getter
     @Builder
     public static class OAuth {
@@ -26,7 +25,7 @@ public class UserDto {
 
             if (provider.equals("kakao")) {
                 providerId = ((Long) attributes.get("id")).toString();
-                email = providerId + "@kakao.social"; // Demo 로직과 동일
+                email = providerId + "@kakao.social";
                 properties = (Map) attributes.get("properties");
                 name = (String) properties.get("nickname");
             } else if(provider.equals("google")){
@@ -50,6 +49,7 @@ public class UserDto {
                     .password(java.util.UUID.randomUUID().toString())
                     .enable(this.enable)
                     .role(this.role)
+                    .provider(this.provider)
                     .build();
         }
     }

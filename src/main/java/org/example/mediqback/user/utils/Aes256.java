@@ -36,7 +36,7 @@ public class Aes256 {
             System.arraycopy(iv, 0, ivAndEncrypted, 0, iv.length);
             System.arraycopy(encrypted, 0, ivAndEncrypted, iv.length, encrypted.length);
 
-
+            // 핵심 수정: 쿠키에서 특수문자가 깨지지 않게 UrlEncoder 사용!
             return Base64.getUrlEncoder().withoutPadding().encodeToString(ivAndEncrypted);
         } catch (Exception e) {
             throw new RuntimeException("Encryption error", e);
@@ -45,7 +45,7 @@ public class Aes256 {
 
     public static byte[] decrypt(byte[] encryptedData) {
         try {
-
+            // 핵심 수정: UrlDecoder 사용!
             byte[] decoded = Base64.getUrlDecoder().decode(encryptedData);
 
             byte[] iv = Arrays.copyOfRange(decoded, 0, 16);
