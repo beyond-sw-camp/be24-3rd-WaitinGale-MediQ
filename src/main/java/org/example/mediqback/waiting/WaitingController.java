@@ -78,8 +78,9 @@ public class WaitingController {
     }
 
     @DeleteMapping("/register")
-    public ResponseEntity deleteReggistration(@RequestBody WaitingDto.DeleteReq waitingDto) {
-        WaitingDto.DeleteRes deleteResult = waitingService.deleteRegistration(waitingDto);
+    public ResponseEntity deleteReggistration(@RequestBody WaitingDto.DeleteReq waitingDto,
+                                              @AuthenticationPrincipal AuthUserDetails user) {
+        WaitingDto.DeleteRes deleteResult = waitingService.deleteRegistration(waitingDto.getHospitalIdx(), user.getIdx());
 
         return ResponseEntity.ok(BaseResponse.success(deleteResult));
     }

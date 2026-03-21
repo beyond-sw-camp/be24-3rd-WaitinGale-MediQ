@@ -58,8 +58,8 @@ public class WaitingService {
 
 
     // 대기열 삭제하기
-    public WaitingDto.DeleteRes deleteRegistration (WaitingDto.DeleteReq dto) {
-        Waiting waiting = waitingRepository.findByHospitalIdxAndUserIdx(dto.getHospitalIdx(), dto.getUserIdx());
+    public WaitingDto.DeleteRes deleteRegistration (Long hospitalIdx, Long userIdx) {
+        Waiting waiting = waitingRepository.findByHospitalIdxAndUserIdx(hospitalIdx, userIdx);
         waitingRepository.delete(waiting);
         return WaitingDto.DeleteRes.from(waiting);
     }
