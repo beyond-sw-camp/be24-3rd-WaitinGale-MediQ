@@ -1,6 +1,7 @@
 package org.example.mediqback.waiting;
 
 import lombok.RequiredArgsConstructor;
+import org.example.mediqback.queue.QueueService;
 import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WaitingService {
     private final WaitingRepository waitingRepository;
-
+    private final QueueService queueService;
 
     // 대기열 등록하기
     public WaitingDto.WaitingRes register(/*WaitingDto.WaitingReq dto*/ Long hospitalIdx, Long userIdx) {
@@ -21,9 +22,12 @@ public class WaitingService {
 //        Waiting entity = waitingRepository.save(dto.toEntity(dto));
 //        return WaitingDto.WaitingRes.from(entity);
 
+        int nextNo = queueService.generateNextWaitingNumber(hospitalIdx);
+
         WaitingDto.WaitingReq dto = WaitingDto.WaitingReq.builder()
                                                 .hospitalIdx(hospitalIdx)
                                                 .userIdx(userIdx)
+                                                .waitingNumber(nextNo)
                                                 .build();
 
         Waiting entity = waitingRepository.save(dto.toEntity(dto));

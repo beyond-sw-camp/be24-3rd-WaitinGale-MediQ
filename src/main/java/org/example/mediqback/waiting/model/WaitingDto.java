@@ -12,10 +12,9 @@ public class WaitingDto {
     @AllArgsConstructor
     @Builder
     public static class WaitingReq {
-        private Long userIdx;
         private Long hospitalIdx;
+        private Long userIdx;
         private int waitingNumber;
-        private Status status;
 
         @Column
         private LocalDateTime createdAt;
