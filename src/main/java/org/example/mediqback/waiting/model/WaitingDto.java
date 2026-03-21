@@ -12,9 +12,10 @@ public class WaitingDto {
     @AllArgsConstructor
     @Builder
     public static class WaitingReq {
-        private Long hospitalIdx;
         private Long userIdx;
+        private Long hospitalIdx;
         private int waitingNumber;
+        private Status status;
 
         @Column
         private LocalDateTime createdAt;
@@ -79,52 +80,11 @@ public class WaitingDto {
         }
     }
 
-
-    @Getter
-    @Builder
-    public static class DeleteReq {
-        private Long hospitalIdx;
-        private Long userIdx;
-
-        public static DeleteReq from (Waiting entity) {
-            return DeleteReq.builder()
-                    .hospitalIdx(entity.getHospitalIdx())
-                    .userIdx(entity.getUserIdx())
-                    .build();
-        }
-    }
-
-    @Getter
-    @Builder
-    public static class DeleteRes {
-        private Long hospitalIdx;
-        private Long userIdx;
-
-        public static DeleteRes from (Waiting entity) {
-            return DeleteRes.builder()
-                    .hospitalIdx(entity.getHospitalIdx())
-                    .userIdx(entity.getUserIdx())
-                    .build();
-        }
-    }
-
-    @Getter
-    @Builder
-    public static class FindRes {
-        private Long idx;
-        private Long hospitalIdx;
-        @Setter
-        private String userName;
-        private int waitingNumber;
-
-        public static FindRes from (Waiting entity) {
-            return FindRes.builder()
-                    .idx(entity.getIdx())
-                    .hospitalIdx(entity.getHospitalIdx())
-                    .waitingNumber(entity.getWaitingNumber())
-                    .build();
-        }
-    }
-
+//    public static class DeleteReq {
+//        private Long hospitalIdx;
+//        private Long userIdx;
+//
+//        public static DeleteReq from
+//    }
 
 }
