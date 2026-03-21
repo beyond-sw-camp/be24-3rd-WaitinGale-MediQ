@@ -102,12 +102,14 @@ public class UserDto {
         private Long idx;
         private String email;
         private String name;
+        private String role;
 
         public static LoginRes from(User entity) {
             return LoginRes.builder()
                     .idx(entity.getIdx())
                     .email(entity.getEmail())
                     .name(entity.getName())
+                    .role(entity.getRole())
                     .build();
         }
     }

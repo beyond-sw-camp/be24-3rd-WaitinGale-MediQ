@@ -35,4 +35,7 @@ public class Orders extends BaseEntity { // 생성일자 기록용
     private int paymentPrice; // 실제 결제할 예약금 금액
 
     private String pgPaymentId; // 포트원 등 PG사 고유 결제 ID
+
+    private String reservationDate; // 방문 날짜 (예: 2026-03-25)
+    private String reservationTime; // 방문 시간 (예: 14:30)
 }

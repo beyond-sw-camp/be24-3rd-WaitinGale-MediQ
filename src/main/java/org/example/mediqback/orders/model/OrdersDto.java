@@ -15,6 +15,8 @@ public class OrdersDto {
     public static class OrdersReq {
         // 병원 번호 하나만 받기
         private Long hospitalIdx;
+        private String reservationDate;
+        private String reservationTime;
     }
 
     @Builder

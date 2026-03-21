@@ -17,6 +17,9 @@ import org.example.mediqback.paymenthistory.model.PaymentHistory;
 import org.example.mediqback.user.model.AuthUserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -27,7 +30,7 @@ public class OrdersService {
 
     private final PaymentHistoryRepository paymentHistoryRepository;
     private final OrdersRepository ordersRepository;
-    private final HospitalRepository hospitalRepository; // Board 대신 Hospital 리포지토리 사용
+    private final HospitalRepository hospitalRepository;
     private final PaymentClient pg;
 
     // 프론트엔드에서 결제창 띄우기 직전에 "결제 대기" 주문서 만들기
@@ -42,9 +45,11 @@ public class OrdersService {
         Orders orders = Orders.builder()
                 .user(user.toEntity())
                 .hospital(hospital)
-//                .paymentPrice(hospital.getDeposit()) // 병원 DB에 설정된 예약금을 그대로 사용 (안전함)
+//                .paymentPrice(hospital.getDeposit()) // 병원 DB에 설정된 예약금을 그대로 사용
                 .paymentPrice(1)
                 .paid(false)
+                .reservationDate(dto.getReservationDate())
+                .reservationTime(dto.getReservationTime())
                 .build();
 
         Orders savedOrders = ordersRepository.save(orders);
@@ -89,5 +94,40 @@ public class OrdersService {
 
             }
         }
+    }
+
+    // 마이페이지에 보여줄 내 예약 일정 가져오기
+    public List<Map<String, Object>> getMySchedule(AuthUserDetails user) {
+        List<Orders> myOrders = ordersRepository.findAll().stream()
+                .filter(order -> order.getUser().getIdx().equals(user.getIdx()) && order.isPaid())
+                .toList();
+
+        List<Map<String, Object>> scheduleList = new ArrayList<>();
+        for (Orders order : myOrders) {
+            Map<String, Object> map = new HashMap<>();
+
+            String date = order.getReservationDate();
+            String time = order.getReservationTime();
+
+            // 날짜 데이터가 있으면 월/일 분리해서 예쁘게 세팅
+            if (date != null && date.contains("-")) {
+                String[] dateParts = date.split("-");
+                map.put("month", Integer.parseInt(dateParts[1]) + "월");
+                map.put("day", dateParts[2]);
+            } else {
+                map.put("month", "예약");
+                map.put("day", "확정");
+            }
+
+            map.put("hospital", order.getHospital().getName());
+
+            // 설명칸에 시간 표시
+            String timeStr = (time != null && !time.isEmpty()) ? time : "시간 미정";
+            map.put("description", "방문 예정 · " + timeStr);
+            map.put("bgClass", "bg-indigo-50 text-indigo-600");
+
+            scheduleList.add(map);
+        }
+        return scheduleList;
     }
 }

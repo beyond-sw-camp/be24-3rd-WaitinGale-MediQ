@@ -2,14 +2,12 @@ package org.example.mediqback.bookmark;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.example.mediqback.bookmark.BookmarkRepository;
 import org.example.mediqback.bookmark.model.Bookmark;
 import org.example.mediqback.bookmark.model.BookmarkDto;
 import org.example.mediqback.user.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service

@@ -2,6 +2,23 @@ jwt:
   secret: ${JWT_SECRET}
   expire: ${JWT_EXPIRE}
 
+portone:
+  api:
+    secret: ${PORTONE_API_SECRET}
+
+#server:
+#  port: 443
+#  error:
+#    whitelabel:
+#      enabled: false
+#    path: /error
+#  ssl:
+#    enabled: true
+#    key-store: "keystore.p12"
+#    # key-store: ./keystore.p12
+#    key-store-type: "PKCS12"
+#    key-store-password: qwer1234
+
 spring:
   # 1. 시큐리티 및 OAuth2 설정
   security:

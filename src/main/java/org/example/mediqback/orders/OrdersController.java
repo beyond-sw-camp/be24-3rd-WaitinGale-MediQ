@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RequestMapping("/orders")
 @RestController
@@ -33,6 +36,14 @@ public class OrdersController {
         ordersService.verify(user, dto);
 
         return ResponseEntity.ok("성공");
+    }
+
+    // 프론트엔드가 일정을 요청할 때 응답해주는 API
+    @GetMapping("/schedule")
+    public ResponseEntity<?> getMySchedule(@AuthenticationPrincipal AuthUserDetails user) {
+        // 로그인한 유저의 예약 일정을 서비스에서 가져와서 프론트로 응답
+        List<Map<String, Object>> result = ordersService.getMySchedule(user);
+        return ResponseEntity.ok(Map.of("success", true, "result", result));
     }
 
 }

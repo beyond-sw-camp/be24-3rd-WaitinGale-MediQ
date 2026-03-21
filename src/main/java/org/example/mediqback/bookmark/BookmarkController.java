@@ -6,7 +6,6 @@ import org.example.mediqback.user.model.AuthUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.example.mediqback.bookmark.BookmarkService;
 
 import java.util.List;
 

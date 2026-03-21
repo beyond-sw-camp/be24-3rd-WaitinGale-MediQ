@@ -54,7 +54,10 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((auth) -> auth
                 // 누구나 접근 가능한 곳
-                .requestMatchers("/user/login", "/user/signup", "/user/verify").permitAll()
+                .requestMatchers
+                        (
+                        "/user/login", "/user/signup", "/user/verify", "/hospitaluser/login", "/hospitaluser/signup"
+                        ).permitAll()
                 // 로그인이 꼭 필요한 곳
                 .requestMatchers("/mypage/**").authenticated()
                 // 그 외 나머지 주소는 일단 전부 열어두기
