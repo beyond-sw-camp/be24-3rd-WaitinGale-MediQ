@@ -8,6 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RequestMapping("/hospital")
 @RequiredArgsConstructor
@@ -33,6 +35,12 @@ public class HospitalController {
         HospitalDto.LoginRes result = hospitalService.login(dto);
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<HospitalDto.SearchRes>> getHospitalList() {
+        List<HospitalDto.SearchRes> list = hospitalService.getRegisteredHospitals();
+        return ResponseEntity.ok(list);
     }
 
 }

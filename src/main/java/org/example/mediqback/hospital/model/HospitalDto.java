@@ -70,4 +70,22 @@ public class HospitalDto {
                     .build();
         }
     }
+
+
+    // 대기 뜨는 병원만 검색하는 기능
+    @Getter
+    @Builder
+    public static class SearchRes {
+        private Long idx;
+        private String placeId;
+        private String name;
+
+        public static SearchRes from(Hospital hospital) {
+            return SearchRes.builder()
+                    .idx(hospital.getIdx())
+                    .placeId(hospital.getPlaceId())
+                    .name(hospital.getName())
+                    .build();
+        }
+    }
 }
