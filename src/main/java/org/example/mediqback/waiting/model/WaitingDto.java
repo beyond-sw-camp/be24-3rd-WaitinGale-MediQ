@@ -80,11 +80,33 @@ public class WaitingDto {
         }
     }
 
-//    public static class DeleteReq {
-//        private Long hospitalIdx;
-//        private Long userIdx;
-//
-//        public static DeleteReq from
-//    }
+
+    @Getter
+    @Builder
+    public static class DeleteReq {
+        private Long hospitalIdx;
+        private Long userIdx;
+
+        public static DeleteReq from (Waiting entity) {
+            return DeleteReq.builder()
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .userIdx(entity.getUserIdx())
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
+    public static class DeleteRes {
+        private Long hospitalIdx;
+        private Long userIdx;
+
+        public static DeleteRes from (Waiting entity) {
+            return DeleteRes.builder()
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .userIdx(entity.getUserIdx())
+                    .build();
+        }
+    }
 
 }
