@@ -30,9 +30,9 @@ public class WaitingService {
                                                 .waitingNumber(nextNo)
                                                 .build();
 
-        Waiting entity = waitingRepository.save(dto.toEntity(dto));
+        Waiting waiting = waitingRepository.save(dto.toEntity(dto));
 
-        return WaitingDto.WaitingRes.from(entity);
+        return WaitingDto.WaitingRes.from(waiting);
     }
 
     public int findMyOrder(Long userIdx) {
@@ -48,8 +48,8 @@ public class WaitingService {
     public List<WaitingDto.ListRes> findListByHospitalId(Long hospitalIdx) {
         List<Waiting> waitingEntityList = waitingRepository.findAllByHospitalIdx(hospitalIdx);
         List<WaitingDto.ListRes> listResDtoList = new ArrayList<>();
-        for (Waiting entity : waitingEntityList) {
-            listResDtoList.add(WaitingDto.ListRes.from(entity));
+        for (Waiting waiting : waitingEntityList) {
+            listResDtoList.add(WaitingDto.ListRes.from(waiting));
         }
         return listResDtoList;
     }
@@ -59,9 +59,28 @@ public class WaitingService {
 
     // 대기열 삭제하기
     public WaitingDto.DeleteRes deleteRegistration (WaitingDto.DeleteReq dto) {
-        Waiting entity = waitingRepository.findByHospitalIdxAndUserIdx(dto.getHospitalIdx(), dto.getUserIdx());
-        waitingRepository.delete(entity);
-        return WaitingDto.DeleteRes.from(entity);
+        Waiting waiting = waitingRepository.findByHospitalIdxAndUserIdx(dto.getHospitalIdx(), dto.getUserIdx());
+        waitingRepository.delete(waiting);
+        return WaitingDto.DeleteRes.from(waiting);
     }
+
+
+
+    // 병원 idx와 로그인 한 사용자 idx로 병원 예약 대기열에 있는지 확인
+    public WaitingDto.FindRes findWaiting(Long hospitalIdx, Long userIdx) {
+        Waiting waiting = waitingRepository.findByHospitalIdxAndUserIdx(hospitalIdx, userIdx);
+
+        // 조회 결과가 있다면
+        if (waiting != null) {
+            return WaitingDto.FindRes.from(waiting);
+        } else {
+            // 조회 결과가 없다면
+            WaitingDto.FindRes findRes = WaitingDto.FindRes.builder()
+                                                    .idx(-1L)
+                                                    .build();
+            return findRes;
+        }
+    }
+
 
 }

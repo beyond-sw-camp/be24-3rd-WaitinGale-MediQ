@@ -108,4 +108,21 @@ public class WaitingDto {
         }
     }
 
+    @Getter
+    @Builder
+    public static class FindRes {
+        private Long idx;
+        private Long hospitalIdx;
+        private Long userIdx;
+
+        public static FindRes from (Waiting entity) {
+            return FindRes.builder()
+                    .idx(entity.getIdx())
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .userIdx(entity.getUserIdx())
+                    .build();
+        }
+    }
+
+
 }

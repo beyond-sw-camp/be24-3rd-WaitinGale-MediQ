@@ -93,11 +93,34 @@ public class WaitingController {
         return ResponseEntity.ok(BaseResponse.success("내 대기 번호 " + String.valueOf(myNumber - currentTreatmentNumber)));
     }
 
-    @GetMapping("/queue/list/{hospitalIdx}")
-    public ResponseEntity findQueueListByHospitalIdx(
+
+
+    // 검색한 병원의 대기열 정보 불러오기
+//    @GetMapping("/queue/list/{hospitalIdx}")
+//    public ResponseEntity findQueueListByHospitalIdx(
+//            @PathVariable("hospitalIdx") Long hospitalIdx
+//    ) {
+//        List<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalId(hospitalIdx);
+//        return ResponseEntity.ok(waitingList);
+//    }
+
+
+    // 대기열 정보를 불러올 때 앞의 사람까지 전부 불러올 필요 없이
+    // 제일 마지막 번호만 불러오면 될 듯
+    // 검색한 병원과 현재 로그인 한 사용자를 검색해서 있으면 띄워서 보여주기
+    // 없으면 대기 화면으로
+    @GetMapping("/queue/{hospitalIdx}")
+    public ResponseEntity findWaiting(
             @PathVariable("hospitalIdx") Long hospitalIdx
+//            @AuthenticationPrincipal AuthUserDetails user
     ) {
-        List<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalId(hospitalIdx);
-        return ResponseEntity.ok(waitingList);
+        Long userIdx = 1L;
+//        WaitingDto.FindRes findRes = waitingService.findWaiting(hospitalIdx, user.getIdx());
+        WaitingDto.FindRes findRes = waitingService.findWaiting(hospitalIdx, userIdx);
+
+        return ResponseEntity.ok(findRes);
     }
+
+
+
 }
