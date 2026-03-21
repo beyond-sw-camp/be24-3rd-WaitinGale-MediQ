@@ -67,12 +67,14 @@ public class WaitingService {
 
 
     // 병원 idx와 로그인 한 사용자 idx로 병원 예약 대기열에 있는지 확인
-    public WaitingDto.FindRes findWaiting(Long hospitalIdx, Long userIdx) {
+    public WaitingDto.FindRes findWaiting(Long hospitalIdx, Long userIdx, String userName) {
         Waiting waiting = waitingRepository.findByHospitalIdxAndUserIdx(hospitalIdx, userIdx);
 
         // 조회 결과가 있다면
         if (waiting != null) {
-            return WaitingDto.FindRes.from(waiting);
+            WaitingDto.FindRes findRes = WaitingDto.FindRes.from(waiting);
+            findRes.setUserName(userName);
+            return findRes;
         } else {
             // 조회 결과가 없다면
             WaitingDto.FindRes findRes = WaitingDto.FindRes.builder()

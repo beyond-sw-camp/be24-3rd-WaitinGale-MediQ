@@ -113,13 +113,15 @@ public class WaitingDto {
     public static class FindRes {
         private Long idx;
         private Long hospitalIdx;
-        private Long userIdx;
+        @Setter
+        private String userName;
+        private int waitingNumber;
 
         public static FindRes from (Waiting entity) {
             return FindRes.builder()
                     .idx(entity.getIdx())
                     .hospitalIdx(entity.getHospitalIdx())
-                    .userIdx(entity.getUserIdx())
+                    .waitingNumber(entity.getWaitingNumber())
                     .build();
         }
     }
