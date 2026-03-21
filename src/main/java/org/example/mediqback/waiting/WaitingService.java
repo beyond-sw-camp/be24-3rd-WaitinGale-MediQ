@@ -13,8 +13,21 @@ import java.util.List;
 public class WaitingService {
     private final WaitingRepository waitingRepository;
 
-    public WaitingDto.WaitingRes register(WaitingDto.WaitingReq dto) {
+
+    // 대기열 등록하기
+    public WaitingDto.WaitingRes register(/*WaitingDto.WaitingReq dto*/ Long hospitalIdx, Long userIdx) {
+        // 일단 병원만 프론트에서 검색해서 전달받기로
+//         전달받던 매개변수
+//        Waiting entity = waitingRepository.save(dto.toEntity(dto));
+//        return WaitingDto.WaitingRes.from(entity);
+
+        WaitingDto.WaitingReq dto = WaitingDto.WaitingReq.builder()
+                                                .hospitalIdx(hospitalIdx)
+                                                .userIdx(userIdx)
+                                                .build();
+
         Waiting entity = waitingRepository.save(dto.toEntity(dto));
+
         return WaitingDto.WaitingRes.from(entity);
     }
 
@@ -36,6 +49,9 @@ public class WaitingService {
         }
         return listResDtoList;
     }
+
+
+
 
     // 대기열 삭제하기
     public WaitingDto.DeleteRes deleteRegistration (WaitingDto.DeleteReq dto) {

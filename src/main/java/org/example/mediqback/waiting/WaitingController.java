@@ -5,9 +5,11 @@ import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.queue.QueueService;
 import org.example.mediqback.queue.model.Queue;
 import org.example.mediqback.queue.model.QueueDto;
+import org.example.mediqback.user.model.AuthUserDetails;
 import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,18 +65,22 @@ public class WaitingController {
 //    }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody WaitingDto.WaitingReq waitingDto) {
-        int nextNo = queueService.generateNextWaitingNumber(waitingDto.getHospitalIdx());
+    public ResponseEntity register(/*@RequestBody WaitingDto.WaitingReq waitingDto,*/
+                                   @AuthenticationPrincipal AuthUserDetails user) {
+//        int nextNo = queueService.generateNextWaitingNumber(waitingDto.getHospitalIdx());
 
-        waitingDto.setWaitingNumber(nextNo);
+//        waitingDto.setWaitingNumber(nextNo);
 
-        WaitingDto.WaitingRes waitingResult = waitingService.register(waitingDto);
+        // 등록할 때 사용자 idx 입력받는게 아니라 로그인 한 사용자 idx 받아오도록
+        // 프론트에서 직접 입력할 정보는 지금은 병원 이름만
+        // 나중에는 병원 검색 후 idx 를 받아오도록
+
+        Long hospitalIdx = 3L;
+
+        WaitingDto.WaitingRes waitingResult = waitingService.register(hospitalIdx, user.getIdx());
 
         return ResponseEntity.ok(BaseResponse.success(waitingResult));
-
-
     }
-
 
     @DeleteMapping("/register")
     public ResponseEntity deleteReggistration(@RequestBody WaitingDto.DeleteReq waitingDto) {
@@ -82,9 +88,6 @@ public class WaitingController {
 
         return ResponseEntity.ok(BaseResponse.success(deleteResult));
     }
-
-
-
 
     @GetMapping("/myOrder")
     public ResponseEntity checkMyOrder(Long userIdx, Long hospitalIdx) {
@@ -95,14 +98,11 @@ public class WaitingController {
         return ResponseEntity.ok(BaseResponse.success("내 대기 번호 " + String.valueOf(myNumber - currentTreatmentNumber)));
     }
 
-
     @GetMapping("/queue/list/{hospitalIdx}")
     public ResponseEntity findQueueListByHospitalIdx(
             @PathVariable("hospitalIdx") Long hospitalIdx
     ) {
         List<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalId(hospitalIdx);
-
         return ResponseEntity.ok(waitingList);
     }
-
 }
