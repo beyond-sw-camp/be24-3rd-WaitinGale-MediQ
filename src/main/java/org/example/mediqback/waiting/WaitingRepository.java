@@ -9,4 +9,6 @@ public interface WaitingRepository extends JpaRepository<Waiting, Long> {
     Waiting findByUserIdx(Long userIdx);
 
     List<Waiting> findAllByHospitalIdx(Long hospitalId);
+
+    Waiting findByHospitalIdxAndUserIdx(Long hospitalIdx, Long userIdx);
 }

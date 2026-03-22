@@ -16,7 +16,6 @@ public class Waiting extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-
     private Long userIdx;
     private Long hospitalIdx;
     private int waitingNumber;
