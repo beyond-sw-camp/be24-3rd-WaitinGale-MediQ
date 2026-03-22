@@ -54,4 +54,30 @@ public class QueueService {
         Queue entity = queueRepository.save(dto.toEntity(dto));
         return QueueDto.QueueRes.from(entity);
     }
+
+
+
+    public QueueDto.NextRes findQueue(Long hospitalIdx) {
+
+        Queue queue = queueRepository.findByHospitalIdx(hospitalIdx);
+
+        if (queue == null) {
+            throw new IllegalArgumentException("해당 병원의 대기열이 존재하지 않습니다");
+        }
+
+        queue.updateCurrentNo(queue.getCurrentNo() + 1);
+
+        queueRepository.save(queue);
+
+        return QueueDto.NextRes.builder()
+                .hospitalIdx(queue.getHospitalIdx())
+                .currentNo(queue.getCurrentNo())
+                .lastNo(queue.getLastNo())
+                .build();
+
+
+    }
+
+
+
 }

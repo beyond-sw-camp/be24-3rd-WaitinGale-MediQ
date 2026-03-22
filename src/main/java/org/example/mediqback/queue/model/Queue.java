@@ -26,5 +26,11 @@ public class Queue {
 
     public void updateLastNo(int newLastNo) {
         this.lastNo = newLastNo;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updateCurrentNo(int newCurrentNo) {
+        this.currentNo = newCurrentNo;
+        this.updatedAt = LocalDateTime.now(); // 변경 시 시간도 함께 갱신
     }
 }

@@ -37,4 +37,36 @@ public class QueueDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    public static class NextReq {
+        private Long hospitalIdx;
+        private int currentNo;
+        private int lastNo;
+
+        public Queue toEntity(NextReq dto) {
+            return Queue.builder()
+                    .hospitalIdx(dto.getHospitalIdx())
+                    .currentNo(dto.getCurrentNo())
+                    .lastNo(dto.getLastNo())
+                    .build();
+        }
+    }
+
+    @Builder
+    @Getter
+    public static class NextRes {
+        private Long hospitalIdx;
+        private int currentNo;
+        private int lastNo;
+
+        public NextRes from(Queue queue) {
+            return NextRes.builder()
+                    .hospitalIdx(queue.getHospitalIdx())
+                    .currentNo(queue.getCurrentNo())
+                    .lastNo(queue.getLastNo())
+                    .build();
+        }
+    }
 }
