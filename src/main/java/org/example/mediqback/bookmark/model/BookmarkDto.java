@@ -9,17 +9,17 @@ public class BookmarkDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Reg {
-        private String placeId;
+        private String kakaoPlaceId;
         private String name;
-        private String location;
+        private String address;
         private Double latitude;
         private Double longitude;
 
         public Bookmark toEntity(User user) {
             return Bookmark.builder()
-                    .placeId(this.placeId)
+                    .kakaoPlaceId(this.kakaoPlaceId)
                     .name(this.name)
-                    .location(this.location)
+                    .address(this.address)
                     .latitude(this.latitude)
                     .longitude(this.longitude)
                     .user(user)
@@ -33,9 +33,9 @@ public class BookmarkDto {
     @Builder
     public static class Res {
         private Long idx;
-        private String placeId;
+        private String kakaoPlaceId;
         private String name;
-        private String location;
+        private String address;
 
         private Double latitude;
         private Double longitude;
@@ -43,9 +43,9 @@ public class BookmarkDto {
         public static Res from(Bookmark entity) {
             return Res.builder()
                     .idx(entity.getIdx())
-                    .placeId(entity.getPlaceId())
+                    .kakaoPlaceId(entity.getKakaoPlaceId())
                     .name(entity.getName())
-                    .location(entity.getLocation())
+                    .address(entity.getAddress())
                     .latitude(entity.getLatitude())
                     .longitude(entity.getLongitude())
                     .build();

@@ -6,7 +6,9 @@ import org.example.mediqback.hospital.model.HospitalDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,4 +34,12 @@ public class HospitalService {
         // 프론트엔드에 돌려줄 응답용 리턴
         return HospitalDto.Res.from(hospital);
     }
+
+    // 목록 조회 로직 추가
+    public List<HospitalDto.SearchRes> getRegisteredHospitals() {
+        return hospitalRepository.findAll().stream()
+                .map(HospitalDto.SearchRes::from)
+                .collect(Collectors.toList());
+    }
+
 }
