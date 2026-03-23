@@ -1,7 +1,9 @@
 package org.example.mediqback.waiting;
 
 import lombok.RequiredArgsConstructor;
+import org.example.mediqback.queue.QueueRepository;
 import org.example.mediqback.queue.QueueService;
+import org.example.mediqback.queue.model.Queue;
 import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.List;
 public class WaitingService {
     private final WaitingRepository waitingRepository;
     private final QueueService queueService;
+    private final QueueRepository queueRepository;
 
     // 대기열 등록하기
     public WaitingDto.WaitingRes register(/*WaitingDto.WaitingReq dto*/ Long hospitalIdx, Long userIdx) {
@@ -95,6 +98,11 @@ public class WaitingService {
             waitingRepository.save(waiting);
             resultList.add(WaitingDto.findWaitingNumberRes.from(waiting));
         }
+
+        // 대기열에 한 명 빠졌으면 대기하고 있는 총 인원수 - 1 해주기
+        Queue queue = queueService.findQueueByHospitalIdx(hospitalIdx);
+        queue.updateLastNo(queue.getLastNo() - 1);
+        queueRepository.save(queue);
 
         return resultList;
     }
