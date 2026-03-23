@@ -1,5 +1,5 @@
 <br>
-<img src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ &fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" style="width: 120%;">
+<img src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" style="width: 120%;">
 
 <br>
 
