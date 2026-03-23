@@ -56,6 +56,8 @@ public class QueueDto {
 
     @Builder
     @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class NextRes {
         private Long hospitalIdx;
         private int currentNo;

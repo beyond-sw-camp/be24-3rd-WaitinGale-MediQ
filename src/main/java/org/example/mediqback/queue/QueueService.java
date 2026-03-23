@@ -46,9 +46,10 @@ public class QueueService {
         Queue queue = queueRepository.findByHospitalIdx(dto.getHospitalIdx());
 
         if (queue != null) {
-                   dto.builder()
-                    .lastNo(dto.getLastNo() + 1)
-                    .build();
+            // 기존 번호 업데이트 로직
+            queue.updateLastNo(queue.getLastNo() + 1);
+            Queue entity = queueRepository.save(queue);
+            return QueueDto.QueueRes.from(entity);
         }
 
         Queue entity = queueRepository.save(dto.toEntity(dto));

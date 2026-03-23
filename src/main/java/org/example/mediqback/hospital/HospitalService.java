@@ -42,4 +42,7 @@ public class HospitalService {
                 .collect(Collectors.toList());
     }
 
+    public List<Hospital> findAll() {
+        return hospitalRepository.findAll();
+    }
 }

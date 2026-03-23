@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        allowCredentials = "true"
+)
+
 @RestController
 @RequestMapping("/api/hospitals") // 병원 관련 API는 이 주소로 시작하도록 설정
 @RequiredArgsConstructor
