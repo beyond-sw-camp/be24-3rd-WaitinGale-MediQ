@@ -1,4 +1,4 @@
-package org.example.mediqback.Bookmark.model;
+package org.example.mediqback.bookmark.model;
 
 
 import jakarta.persistence.*;
