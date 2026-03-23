@@ -24,7 +24,7 @@ public class AuthUserDetails implements UserDetails, OAuth2User {
     private String name;
     private Map<String, Object> attributes;
 
-    // 일반 로그인용 from 메서드 (attributes 없음)
+    //  일반 로그인용 from 메서드 (attributes 없음)
     public static AuthUserDetails from(User entity) {
         return AuthUserDetails.builder()
                 .idx(entity.getIdx())
@@ -36,7 +36,7 @@ public class AuthUserDetails implements UserDetails, OAuth2User {
                 .build();
     }
 
-    // 소셜 로그인용 from 메서드 (attributes 포함)
+    //  소셜 로그인용 from 메서드 (attributes 포함)
     public static AuthUserDetails from(User entity, Map<String, Object> attributes) {
         return AuthUserDetails.builder()
                 .idx(entity.getIdx())
@@ -49,6 +49,7 @@ public class AuthUserDetails implements UserDetails, OAuth2User {
                 .build();
     }
 
+    //  OAuth2User 필수 메서드 구현
     @Override
     public Map<String, Object> getAttributes() {
         return attributes;
@@ -59,6 +60,7 @@ public class AuthUserDetails implements UserDetails, OAuth2User {
         return name;
     }
 
+    //  기존 UserDetails 필수 메서드
     @Override
     public boolean isEnabled() { return enable; }
 
@@ -82,6 +84,7 @@ public class AuthUserDetails implements UserDetails, OAuth2User {
     @Override
     public boolean isCredentialsNonExpired() { return true; }
 
+    //  엔티티 변환 메서드
     public User toEntity() {
         return User.builder()
                 .idx(this.idx)

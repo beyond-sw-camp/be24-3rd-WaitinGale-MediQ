@@ -2,8 +2,10 @@ package org.example.mediqback.notification;
 
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.notification.model.NotificationDto;
+import org.example.mediqback.user.model.AuthUserDetails;
 import org.jose4j.lang.JoseException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -16,12 +18,12 @@ import java.util.concurrent.ExecutionException;
 @CrossOrigin(origins = "*")
 public class NotificationController {
     private final NotificationService notificationService;
-    @PostMapping("/sub/{userIdx}")
+    @PostMapping("/sub")
     public ResponseEntity subscribe(
-            @PathVariable("userIdx") Long userIdx,
+            @AuthenticationPrincipal AuthUserDetails user,
             @RequestBody NotificationDto.Subscribe dto
     ) {
-        dto.setUserIdx(userIdx);
+        dto.setUserIdx(user.getIdx());
         notificationService.subscribe(dto);
         return ResponseEntity.ok("성공");
     }

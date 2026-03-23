@@ -20,9 +20,9 @@ public class Bookmark extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-    private String placeId; // 카카오맵의 place.id
+    private String kakaoPlaceId; // 카카오맵의 place.id
     private String name;
-    private String location;
+    private String address;
 
     private Double latitude;
     private Double longitude;

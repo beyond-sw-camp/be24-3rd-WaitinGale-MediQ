@@ -20,9 +20,11 @@ public class SurveyformService {
         User user = userRepository.findById(userIdx)
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
 
+        //DTO -> Entity 변환 후 User 세팅
         Surveyform surveyform = dto.toEntity();
         surveyform.setUser(user);
 
+        //DB 저장
         surveyformRepository.save(surveyform);
     }
 }

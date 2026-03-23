@@ -2,7 +2,6 @@ package org.example.mediqback.user;
 
 import org.example.mediqback.user.model.EmailVerify;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
 
 public interface EmailVerifyRepository extends JpaRepository<EmailVerify, Long> {

@@ -1,12 +1,14 @@
 package org.example.mediqback.config.oauth2;
 
+import org.example.mediqback.user.model.AuthUserDetails;
+import org.example.mediqback.user.utils.JwtUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.mediqback.user.model.AuthUserDetails;
-import org.example.mediqback.user.utils.JwtUtil;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -32,8 +34,18 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 user.getRole()
         );
 
-        // 쿠키 대신, 프론트엔드 주소(?token=)에 토큰을 직접 달아서 보냅니다.
-        String redirectUrl = "http://localhost:5173/?token=" + jwt;
-        getRedirectStrategy().sendRedirect(request, response, redirectUrl);
+        //  일반 로그인과 완벽하게 동일한 HttpOnly 안전한 쿠키 생성
+        ResponseCookie cookie = ResponseCookie.from("ATOKEN", jwt)
+                .path("/")
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("None")
+                .build();
+
+        //  헤더에 쿠키 담기
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+        //  URL에 토큰을 덕지덕지 붙이지 않고, 깔끔하게 메인 페이지로만 리다이렉트!
+        getRedirectStrategy().sendRedirect(request, response, "http://localhost:5173/");
     }
 }

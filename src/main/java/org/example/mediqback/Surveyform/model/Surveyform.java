@@ -1,10 +1,7 @@
 package org.example.mediqback.Surveyform.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.mediqback.common.model.BaseEntity;
 import org.example.mediqback.user.model.User;
 
@@ -16,8 +13,7 @@ import java.util.List;
 @Getter
 @Builder
 @Entity
-public class
-Surveyform extends BaseEntity {
+public class Surveyform extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;

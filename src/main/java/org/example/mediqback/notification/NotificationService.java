@@ -40,7 +40,7 @@ public class NotificationService {
     }
 
     public void send(NotificationDto.Send dto) throws GeneralSecurityException, JoseException, IOException, ExecutionException, InterruptedException {
-        NotificationEntity entity = notificationRepository.findById(dto.getIdx()).orElseThrow();
+        NotificationEntity entity = notificationRepository.findById(dto.getUserIdx()).orElseThrow();
 
         Subscription.Keys keys = new Subscription.Keys(
                 entity.getP256dh(),
@@ -50,7 +50,21 @@ public class NotificationService {
 
         Notification notification = new Notification(subscription, NotificationDto.Payload.from(dto).toString());
         pushService.send(notification);
+    }
 
+    // 사용자 idx 로 알림 구독 정보 찾기
+    public NotificationDto.SearchRes findByUserIdx(Long userIdx) {
+
+        // notification 테이블에서 사용자 idx로 일치하는 행 찾기
+        NotificationEntity entity = notificationRepository.findByUserIdx(userIdx);
+
+        NotificationDto.SearchRes dto = NotificationDto.SearchRes.builder()
+                .userIdx(entity.getUserIdx())
+                .auth(entity.getAuth())
+                .p256dh(entity.getP256dh())
+                .endpoint(entity.getEndpoint())
+                .build();
+        return dto;
     }
 }
 
