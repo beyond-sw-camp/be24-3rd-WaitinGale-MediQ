@@ -2,6 +2,7 @@ package org.example.mediqback.bookmark.model;
 
 import lombok.*;
 import org.example.mediqback.user.model.User;
+import org.example.mediqback.Bookmark.model.Bookmark;
 
 public class BookmarkDto {
     @Builder
