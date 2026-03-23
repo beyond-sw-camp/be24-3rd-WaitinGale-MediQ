@@ -1,8 +1,7 @@
 package org.example.mediqback.notification.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.example.mediqback.waiting.model.Waiting;
 
 import java.util.Map;
 
@@ -25,8 +24,9 @@ public class NotificationDto {
     }
 
     @Getter
+    @Builder
     public static class Send {
-        private Long idx;
+        private Long userIdx;
         private String title;
         private String message;
     }
@@ -49,4 +49,32 @@ public class NotificationDto {
             return "{\"title\":\""+this.title+"\", \"message\":\""+this.message+"\"}";
         }
     }
+
+
+    @Getter
+    @NoArgsConstructor
+    public static class SearchReq {
+        private Long userIdx;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    public static class SearchRes {
+        private Long userIdx;
+        private String auth;
+        private String endpoint;
+        private String p256dh;
+
+        public static SearchRes from (NotificationEntity entity) {
+            return SearchRes.builder()
+                    .userIdx(entity.getUserIdx())
+                    .auth(entity.getAuth())
+                    .endpoint(entity.getEndpoint())
+                    .p256dh(entity.getP256dh())
+                    .build();
+        }
+    }
+
+
 }

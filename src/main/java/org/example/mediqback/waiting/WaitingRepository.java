@@ -14,4 +14,6 @@ public interface WaitingRepository extends JpaRepository<Waiting, Long> {
 
     // hospitalIdx가 일치하고, waitingNumber가 특정 값보다 큰 리스트 조회
     List<Waiting> findByHospitalIdxAndWaitingNumberGreaterThan(Long hospitalIdx, int waitingNumber);
+
+    Waiting findByHospitalIdxAndWaitingNumber(Long hospitalIdx, int i);
 }
