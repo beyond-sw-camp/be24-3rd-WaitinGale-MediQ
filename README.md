@@ -3,6 +3,19 @@
 
 <br>
 
+
+<br>
+
+### 📌 목차
+- [👥 팀원 소개](#-팀원-소개)
+- [🐶 기술 스택](#-기술-스택)
+- [🐱 MediQ 서비스 바로가기](#-mediq-서비스-바로가기)
+- [🐹 서비스 소개](#-서비스-소개)
+- [🐰 프로젝트 기획 및 설계](#-프로젝트-기획-및-설계)
+- [🎥 주요 기능 구현 영상](#-주요-기능-구현-영상)
+
+<br>
+
 ## 🕵️ 팀원 소개
 
 > **[한화시스템 BEYOND SW캠프 24기] 3rd Project**  
@@ -16,17 +29,7 @@
 
 </div>
 
-<br>
 
-### 📌 목차
-- [🐶 기술 스택](#-기술-스택)
-- [🐱 MediQ 서비스 바로가기](#-mediq-서비스-바로가기)
-- [🐹 서비스 소개](#-서비스-소개)
-- [👥 팀원 소개](#-팀원-소개)
-- [🐰 프로젝트 기획 및 설계](#-프로젝트-기획-및-설계)
-- [🎥 주요 기능 구현 영상](#-주요-기능-구현-영상)
-
-<br>
 
 ## 🐶 기술 스택
 
@@ -64,21 +67,7 @@
 - **📅 스마트 예약**: 문진표 작성 및 원격 대기 등록 시스템
 - **📂 의료 기록 관리**: 진료 이력, 처방전, 관련 문서 저장 및 열람
 
-<br>
 
-## 👥 팀원 소개
-
-<div align="center">
-
-| **권민석 (Phomato)** | **김미정** | **노승찬** | **이한별** |
-| :---: | :---: | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/2e7e02bb-51a6-402a-90b1-2ad1593db900" width="130" height="130" /> | <img src="https://github.com/user-attachments/assets/2cb66500-867d-4d6b-a20f-8560e8eae04f" width="130" height="130" /> | <img src="https://github.com/user-attachments/assets/615657ad-7245-4fba-bad6-848a666a2096" width="130" height="130" /> | <img src="https://github.com/user-attachments/assets/d1fe6ef0-43dd-4cb1-8199-fd6eca75108e" width="130" height="130" /> |
-| [GitHub](https://github.com/RIMIN0650) | [GitHub](https://github.com/mihub02) | [GitHub](https://github.com/seungchan-0629) | [GitHub](https://github.com/sole0714) |
-| **Frontend** | **Frontend** | **Frontend** | **Frontend** |
-
-</div>
-
-<br>
 
 ## 🐰 프로젝트 기획 및 설계
 
