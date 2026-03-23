@@ -152,4 +152,10 @@ public class WaitingService {
             }
         }
     }
+
+    // 사람이 예약했는지 확인하는 코드
+    public WaitingDto.isReservedRes isReserved(Long userIdx) {
+        Waiting waiting = waitingRepository.findByUserIdx(userIdx);
+        return WaitingDto.isReservedRes.from(waiting);
+    }
 }

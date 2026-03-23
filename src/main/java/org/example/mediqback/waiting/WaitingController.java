@@ -127,6 +127,12 @@ public class WaitingController {
         return ResponseEntity.ok(findRes);
     }
 
-
-
+    // 로그인 한 사용자가 예약한 병원이 있는지 확인
+    @GetMapping("/queue/waiting/mine")
+    public ResponseEntity isReserved(
+            @AuthenticationPrincipal AuthUserDetails user
+    ) {
+        WaitingDto.isReservedRes dto = waitingService.isReserved(user.getIdx());
+        return ResponseEntity.ok(dto);
+    }
 }

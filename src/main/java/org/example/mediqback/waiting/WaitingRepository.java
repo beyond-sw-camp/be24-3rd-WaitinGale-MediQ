@@ -16,4 +16,5 @@ public interface WaitingRepository extends JpaRepository<Waiting, Long> {
     List<Waiting> findByHospitalIdxAndWaitingNumberGreaterThan(Long hospitalIdx, int waitingNumber);
 
     Waiting findByHospitalIdxAndWaitingNumber(Long hospitalIdx, int i);
+
 }

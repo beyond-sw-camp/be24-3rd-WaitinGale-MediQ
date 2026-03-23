@@ -158,4 +158,21 @@ public class WaitingDto {
         }
     }
 
+
+
+    @Getter
+    @Builder
+    public static class isReservedRes {
+        private Long userIdx;
+        private Long hospitalIdx;
+        private int waitingNumber;
+
+        public static isReservedRes from (Waiting entity) {
+            return isReservedRes.builder()
+                    .userIdx(entity.getUserIdx())
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .waitingNumber(entity.getWaitingNumber())
+                    .build();
+        }
+    }
 }
