@@ -8,11 +8,15 @@ import org.example.mediqback.queue.model.QueueDto;
 import org.example.mediqback.user.model.AuthUserDetails;
 import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
+import org.jose4j.lang.JoseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 @RestController
@@ -79,7 +83,7 @@ public class WaitingController {
 
     @DeleteMapping("/register")
     public ResponseEntity deleteReggistration(@RequestBody WaitingDto.DeleteReq waitingDto,
-                                              @AuthenticationPrincipal AuthUserDetails user) {
+                                              @AuthenticationPrincipal AuthUserDetails user) throws JoseException, GeneralSecurityException, IOException, ExecutionException, InterruptedException {
         WaitingDto.DeleteRes deleteResult = waitingService.deleteRegistration(waitingDto.getHospitalIdx(), user.getIdx());
 
         // 자신보다 waitingNumber이 큰 사람들을 waitingNumber -1 씩 해주기
