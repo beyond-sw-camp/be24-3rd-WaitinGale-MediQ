@@ -99,11 +99,13 @@ public class WaitingDto {
     public static class DeleteRes {
         private Long hospitalIdx;
         private Long userIdx;
+        private int waitingNumber;
 
         public static DeleteRes from (Waiting entity) {
             return DeleteRes.builder()
                     .hospitalIdx(entity.getHospitalIdx())
                     .userIdx(entity.getUserIdx())
+                    .waitingNumber(entity.getWaitingNumber())
                     .build();
         }
     }
@@ -126,5 +128,34 @@ public class WaitingDto {
         }
     }
 
+
+    @Builder
+    @Getter
+    public static class findWaitingNumberReq {
+        private Long hospitalIdx;
+        private Long userIdx;
+
+        public static findWaitingNumberReq from (Waiting entity) {
+            return findWaitingNumberReq.builder()
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .userIdx(entity.getUserIdx())
+                    .build();
+        }
+    }
+
+
+    @Builder
+    @Getter
+    public static class findWaitingNumberRes {
+        private Long hospitalIdx;
+        private Long userIdx;
+
+        public static findWaitingNumberRes from(Waiting entity) {
+            return findWaitingNumberRes.builder()
+                    .hospitalIdx(entity.getHospitalIdx())
+                    .userIdx(entity.getUserIdx())
+                    .build();
+        }
+    }
 
 }

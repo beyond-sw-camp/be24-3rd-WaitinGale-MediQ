@@ -23,4 +23,8 @@ public class Waiting extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status = Status.WAITING;
+
+    public void decreaseWaitingNumber() {
+        this.waitingNumber--;
+    }
 }

@@ -85,4 +85,18 @@ public class WaitingService {
     }
 
 
+    // 병원 번호와 waiting 번호 입력받고 대기열 번호 큰 사람 1씩 빼주기
+    public List<WaitingDto.findWaitingNumberRes> updateWaitingNumber(Long hospitalIdx, int waitingNumber) {
+
+        List<Waiting> waitingList = waitingRepository.findByHospitalIdxAndWaitingNumberGreaterThan(hospitalIdx, waitingNumber);
+        List<WaitingDto.findWaitingNumberRes> resultList = new ArrayList<>();
+        for (Waiting waiting : waitingList) {
+            waiting.decreaseWaitingNumber();
+            waitingRepository.save(waiting);
+            resultList.add(WaitingDto.findWaitingNumberRes.from(waiting));
+        }
+
+        return resultList;
+    }
+
 }

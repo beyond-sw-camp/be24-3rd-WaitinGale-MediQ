@@ -82,6 +82,9 @@ public class WaitingController {
                                               @AuthenticationPrincipal AuthUserDetails user) {
         WaitingDto.DeleteRes deleteResult = waitingService.deleteRegistration(waitingDto.getHospitalIdx(), user.getIdx());
 
+        // 자신보다 waitingNumber이 큰 사람들을 waitingNumber -1 씩 해주기
+        waitingService.updateWaitingNumber(waitingDto.getHospitalIdx(), deleteResult.getWaitingNumber());
+        
         return ResponseEntity.ok(BaseResponse.success(deleteResult));
     }
 
