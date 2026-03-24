@@ -38,4 +38,4 @@ out/
 
 #Custrom
 .env
-.pem
+mediQ.pem
