@@ -26,15 +26,10 @@
 
 <div align="center">
 
-<div align="center">
-
-| 권민석 | 김미정 | 노승찬 | 이한별 |
+| **권민석** | **김미정** | **노승찬** | **이한별** |
 | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/19d001b7-cc93-48ff-96e3-5d0d3743ef2e" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e6d2bbe-e8f6-4fd9-9200-74ff652d4d53" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e7f0f41-3c3d-4f51-b4fd-2b0d7dee85b6" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/b4a0439f-ec7c-4ee7-ae61-6954b12d4693" width="150" height="150" /> |
-
-</div>
-| [GitHub](https://github.com/RIMIN0650) | [GitHub](https://github.com/mihub02) | [GitHub](https://github.com/seungchan-0629) | [GitHub](https://github.com/sole0714) |
-
+| [![RIMIN0650](https://img.shields.io/badge/RIMIN0650-181717?logo=github&logoColor=white)](https://github.com/RIMIN0650) | [![mihub02](https://img.shields.io/badge/mihub02-181717?logo=github&logoColor=white)](https://github.com/mihub02) | [![seungchan-0629](https://img.shields.io/badge/seungchan--0629-181717?logo=github&logoColor=white)](https://github.com/seungchan-0629) | [![sole0714](https://img.shields.io/badge/sole0714-181717?logo=github&logoColor=white)](https://github.com/sole0714) |
 
 </div>
 
