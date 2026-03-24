@@ -1,8 +1,8 @@
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=wave&height=250&color=4A90E2&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
-<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=wave&height=250&color=4A90E2&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
-<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=wave&height=250&color=4A90E2&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25" width="100%">
+<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" width="100%">
 </picture>
 </p>
 
