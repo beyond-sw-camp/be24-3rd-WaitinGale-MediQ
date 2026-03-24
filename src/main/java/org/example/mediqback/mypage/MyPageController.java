@@ -1,5 +1,7 @@
 package org.example.mediqback.mypage;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.medicalhistory.MedicalHistoryService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "MyPage API", description = "마이페이지 (진료 기록, 처방전, 결제 내역 등) 조회 API")
 @RestController
 @RequestMapping("/mypage")
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ public class MyPageController {
     private final PaymentHistoryService paymentHistoryService;
 
     // 1. 진료 기록 탭 클릭 시 (또는 첫 화면)
+    @Operation(summary = "진료 기록 조회", description = "현재 로그인한 사용자의 과거 진료 기록 내역을 조회합니다.")
     @GetMapping("/medical")
     public ResponseEntity<BaseResponse<List<MedicalHistoryDto.Response>>> getMyMedicalHistory(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
@@ -32,6 +36,7 @@ public class MyPageController {
     }
 
     // 처방전 탭 클릭 시 (나중에 PrescriptionService 연결)
+    @Operation(summary = "처방전 조회", description = "현재 로그인한 사용자의 처방전 내역을 조회합니다. (임시 반환)")
     @GetMapping("/prescriptions")
     public ResponseEntity<BaseResponse<List<Object>>> getMyPrescriptions(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
@@ -39,6 +44,7 @@ public class MyPageController {
         return ResponseEntity.ok(BaseResponse.success(List.of()));
     }
 
+    @Operation(summary = "결제 내역 조회", description = "현재 로그인한 사용자의 앱 결제(예약금 등) 내역을 최신순으로 조회합니다.")
     @GetMapping("/billing")
     public ResponseEntity<BaseResponse<List<PaymentHistoryDto.Response>>> getMyBilling(
             @AuthenticationPrincipal AuthUserDetails userDetails) {
@@ -52,6 +58,7 @@ public class MyPageController {
     }
 
     // 검사 결과 탭 클릭 시 (나중에 ResultService 연결)
+    @Operation(summary = "검사 결과 조회", description = "현재 로그인한 사용자의 검사 결과 내역을 조회합니다. (임시 반환)")
     @GetMapping("/results")
     public ResponseEntity<BaseResponse<List<Object>>> getMyResults(
             @AuthenticationPrincipal AuthUserDetails userDetails) {

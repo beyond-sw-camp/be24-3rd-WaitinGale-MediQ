@@ -1,12 +1,15 @@
 package org.example.mediqback.user;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.common.model.BaseResponseStatus;
 import org.example.mediqback.user.model.AuthUserDetails;
 import org.example.mediqback.user.model.UserDto;
 import org.example.mediqback.user.utils.JwtUtil;
-import org.example.mediqback.common.model.BaseResponse;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+@Tag(name = "User API", description = "일반 사용자 회원가입, 로그인 및 프로필 관리 API") // 컨트롤러 그룹 설명
 @CrossOrigin
 @RequestMapping("/user")
 @RestController
@@ -28,12 +32,15 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
+    @Operation(summary = "일반 사용자 회원가입", description = "새로운 일반 사용자를 등록합니다.")
     @PostMapping("/signup")
     public ResponseEntity signup(@Valid @RequestBody UserDto.SignupReq dto) {
         UserDto.SignupRes result =  userService.signup(dto);
         return ResponseEntity.ok(BaseResponse.success(result));
     }
 
+
+    @Operation(summary = "일반 사용자 로그인", description = "이메일과 비밀번호로 로그인하고, 인증 쿠키를 발급받습니다.")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserDto.LoginReq dto) {
         UsernamePasswordAuthenticationToken token =
@@ -69,6 +76,7 @@ public class UserController {
         return ResponseEntity.ok("로그인 실패");
     }
 
+    @Operation(summary = "내 프로필 조회", description = "현재 로그인된 사용자의 프로필 정보를 조회합니다. (JWT 쿠키 필요)")
     @GetMapping("/profile")
     public ResponseEntity<BaseResponse> getProfile(@AuthenticationPrincipal AuthUserDetails user) {
         // JwtFilter에서 토큰 검증을 통과하지 못하면 user는 null이 됩니다.
@@ -86,6 +94,7 @@ public class UserController {
         return ResponseEntity.ok(BaseResponse.success(userInfo));
     }
 
+    @Operation(summary = "로그아웃", description = "사용자의 로그인 토큰 쿠키를 삭제하여 로그아웃 처리합니다.")
     @PostMapping("/logout")
     public ResponseEntity logout() {
         // 내용물을 비우고, 수명(maxAge)을 0으로 만든 빈 쿠키를 생성.
@@ -103,8 +112,11 @@ public class UserController {
                 .body(BaseResponse.success("로그아웃 성공"));
     }
 
+    @Operation(summary = "이메일 인증 확인", description = "이메일로 발송된 UUID 링크를 통해 계정을 활성화합니다.")
     @GetMapping("/verify")
-    public ResponseEntity verify(String uuid) {
+    public ResponseEntity verify(
+            @Parameter(description = "이메일로 전송받은 고유 인증키(UUID)", example = "123e4567-e89b-12d3-a456-426614174000")
+            String uuid) {
         userService.verify(uuid);
         return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).location(URI.create("http://localhost:5173")).build();
     }

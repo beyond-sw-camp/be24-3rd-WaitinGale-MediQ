@@ -1,5 +1,6 @@
 package org.example.mediqback.user.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,13 +54,18 @@ public class UserDto {
                     .build();
         }
     }
+    @Schema(description = "회원가입 요청 DTO")
     @AllArgsConstructor
     @Getter
     public static class SignupReq {
+        @Schema(description = "이메일 주소", example = "test@example.com")
         @Pattern(message = "이메일 형식이 아닙니다.", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
         private String email;
+
+        @Schema(description = "사용자 이름", example = "홍길동")
         private String name;
 
+        @Schema(description = "비밀번호 (영문, 숫자, 특수문자 조합 8~20자)", example = "Password123!")
         @Pattern(message = "비밀번호는 숫자,영문,특수문자( !@#$%^&*() )를 조합해 8~20자로 생성해주세요.", regexp = "^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])(?=.*[0-9]).{8,20}$")
         private String password;
 
@@ -74,11 +80,18 @@ public class UserDto {
         }
     }
 
+    @Schema(description = "회원가입 응답 DTO")
     @Builder
     @Getter
     public static class SignupRes {
+
+        @Schema(description = "회원 고유 번호", example = "1")
         private Long idx;
+
+        @Schema(description = "이메일", example = "test@example.com")
         private String email;
+
+        @Schema(description = "이름", example = "홍길동")
         private String name;
 
         public static SignupRes from(User entity) {
@@ -90,18 +103,26 @@ public class UserDto {
         }
     }
 
+    @Schema(description = "로그인 요청 DTO")
     @Getter
     public static class LoginReq {
+        @Schema(description = "로그인 이메일", example = "test@example.com")
         private String email;
+        @Schema(description = "로그인 비밀번호", example = "Password123!")
         private String password;
     }
 
+    @Schema(description = "사용자 정보 응답 DTO")
     @Builder
     @Getter
     public static class LoginRes {
+        @Schema(description = "회원 고유 번호", example = "1")
         private Long idx;
+        @Schema(description = "이메일", example = "test@example.com")
         private String email;
+        @Schema(description = "이름", example = "홍길동")
         private String name;
+        @Schema(description = "사용자 권한", example = "ROLE_USER")
         private String role;
 
         public static LoginRes from(User entity) {
