@@ -1,8 +1,8 @@
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=6B819E&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
-<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=6B819E&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
-<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=waving&height=250&color=6B819E&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" width="100%">
+<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=1D4E89&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=위치%20기반%20병원·약국%20조회%20및%20실시간%20대기%20예약%20플랫폼&descSize=25&reversal=false">
+<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=1D4E89&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=위치%20기반%20병원·약국%20조회%20및%20실시간%20대기%20예약%20플랫폼&descSize=25&reversal=false">
+<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=waving&height=250&color=1D4E89&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=위치%20기반%20병원·약국%20조회%20및%20실시간%20대기%20예약%20플랫폼&descSize=25&reversal=false" width="100%">
 </picture>
 </p>
 
@@ -99,7 +99,7 @@
 > 대규모 트래픽 발생 및 병원 실시간 예약 부하를 분산하기 위해 설계한 이상적인 타겟 아키텍처입니다.
 
 <div align="center">
-  <img width="558" height="559" alt="Image" src="https://github.com/user-attachments/assets/6f847456-d423-4c12-8c2a-7dab76a3cba7" />
+  <img src="https://github.com/user-attachments/assets/dc8455f0-ab4f-4bf4-b01b-5b487fd784ff" width="558" alt="Image" />
 </div>
 
 - **L4/L7 Load Balancer**: 예약 요청이 몰릴 때 다수의 서버 인스턴스로 트래픽 분산
@@ -107,39 +107,4 @@
 - **Database Replication**: 조회(Read)와 예약(Write) 부하 분산을 위한 Primary-Replica 구조
 - **Redis Cache**: 잦은 조회가 발생하는 실시간 대기열 데이터를 캐싱하여 DB 병목 현상 방지
 
-<br>
 
----
-
-## ✨ 핵심 로직 및 트러블슈팅
-
-> 프로젝트를 진행하며 마주한 기술적 고민과 해결 과정을 기록했습니다. 상세한 내용은 [팀 기술 블로그 / Wiki](#)에서 확인하실 수 있습니다.
-
-### 🍯 1. 기술적 의사결정
-- **왜 Redis를 선택했는가?**
-  - 실시간 대기 현황은 변경이 잦고 조회 빈도가 매우 높습니다. 이를 RDB에서 모두 처리하면 부하가 크기 때문에, In-Memory DB인 Redis를 활용하여 조회 성능을 극대화했습니다.
-- **예약 동시성 제어** *(예시)*
-  - 동일한 시간에 여러 환자가 한 병원에 예약을 시도할 때 발생하는 Race Condition을 방지하기 위해 000한 방식을 채택했습니다.
-
-### 🔥 2. 트러블슈팅 (Troubleshooting)
-<details>
-<summary><b> 🚨 [이슈 1] 위치 기반 병원 검색 시 조회 속도 지연 문제</b></summary>
-<div markdown="1">
-<br>
-
-- **문제 상황**: 사용자의 위도/경도를 기준으로 반경 N km 이내의 병원을 조회하는 쿼리가 데이터가 많아질수록 기하급수적으로 느려짐.
-- **해결 방안**: DB 인덱싱 최적화 및 공간 데이터(Spatial Data) 함수를 적용하여 조회 성능을 O% 개선함.
-</div>
-</details>
-
-<details>
-<summary><b> 🚨 [이슈 2] 내용 작성</b></summary>
-<div markdown="1">
-<br>
-
-- **문제 상황**: ...
-- **해결 방안**: ...
-</div>
-</details>
-
-<br>
