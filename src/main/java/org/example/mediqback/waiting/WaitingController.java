@@ -1,5 +1,9 @@
 package org.example.mediqback.waiting;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.queue.QueueService;
@@ -18,7 +22,7 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-
+@Tag(name = "Waiting API", description = "환자 병원 대기열(접수) 관리 API")
 @RestController
 @RequestMapping("/waiting")
 @RequiredArgsConstructor
@@ -68,6 +72,10 @@ public class WaitingController {
 //        return ResponseEntity.ok(BaseResponse.success(waitingResult + " " + queueResult));
 //    }
 
+    @Operation(summary = "대기열 등록", description = "병원에 대기열을 등록합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "대기열 등록 성공")
+    })
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody WaitingDto.WaitingReq waitingDto,
                                    @AuthenticationPrincipal AuthUserDetails user) {
@@ -81,6 +89,10 @@ public class WaitingController {
         return ResponseEntity.ok(BaseResponse.success(waitingResult));
     }
 
+    @Operation(summary = "대기열 취소", description = "등록된 대기열을 취소합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "대기열 취소 성공")
+    })
     @DeleteMapping("/register")
     public ResponseEntity deleteReggistration(@RequestBody WaitingDto.DeleteReq waitingDto,
                                               @AuthenticationPrincipal AuthUserDetails user) throws JoseException, GeneralSecurityException, IOException, ExecutionException, InterruptedException {
@@ -88,10 +100,14 @@ public class WaitingController {
 
         // 자신보다 waitingNumber이 큰 사람들을 waitingNumber -1 씩 해주기
         waitingService.updateWaitingNumber(waitingDto.getHospitalIdx(), deleteResult.getWaitingNumber());
-        
+
         return ResponseEntity.ok(BaseResponse.success(deleteResult));
     }
 
+    @Operation(summary = "내 대기 순서 확인", description = "현재 나의 대기 순서를 확인합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "대기 순서 확인 성공")
+    })
     @GetMapping("/myOrder")
     public ResponseEntity checkMyOrder(Long userIdx, Long hospitalIdx) {
         int currentTreatmentNumber = queueService.findQueueByHospitalIdx(hospitalIdx).getCurrentNo();
@@ -104,6 +120,10 @@ public class WaitingController {
 
 
     // 검색한 병원의 대기열 정보 불러오기
+    @Operation(summary = "특정 병원의 대기열 목록 조회", description = "검색한 병원의 전체 대기열 정보를 불러옵니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "목록 조회 성공")
+    })
     @GetMapping("/queue/list/{hospitalIdx}")
     public ResponseEntity findQueueListByHospitalIdx(
             @PathVariable("hospitalIdx") Long hospitalIdx
@@ -116,6 +136,10 @@ public class WaitingController {
     // 제일 마지막 번호만 불러오면 될 듯
     // 검색한 병원과 현재 로그인 한 사용자를 검색해서 있으면 띄워서 보여주기
     // 없으면 대기 화면으로
+    @Operation(summary = "특정 병원의 내 예약 확인", description = "현재 로그인한 사용자가 특정 병원에 예약했는지 확인합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "예약 확인 성공")
+    })
     @GetMapping("/queue/{hospitalIdx}")
     public ResponseEntity findWaiting(
             @PathVariable("hospitalIdx") Long hospitalIdx,
@@ -128,6 +152,10 @@ public class WaitingController {
     }
 
     // 로그인 한 사용자가 예약한 병원이 있는지 확인
+    @Operation(summary = "내 전체 예약 여부 확인", description = "로그인한 사용자가 예약한 병원이 있는지 확인합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "확인 완료")
+    })
     @GetMapping("/queue/waiting/mine")
     public ResponseEntity isReserved(
             @AuthenticationPrincipal AuthUserDetails user
