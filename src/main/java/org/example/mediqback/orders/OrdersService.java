@@ -130,4 +130,33 @@ public class OrdersService {
         }
         return scheduleList;
     }
+
+    // OrdersService.java
+    @Transactional
+    public void testVerify(AuthUserDetails user, OrdersDto.VerifyReq dto) {
+        // 1. 포트원 연동 코드는 주석 처리하거나 제거 (외부 통신 차단)
+        // CompletableFuture<Payment> completableFuture = pg.getPayment(dto.getPaymentId());
+        // ...
+
+        // 2. 전달받은 임의의 주문 번호로 DB에서 Orders 조회
+        // JMeter 같은 툴에서 요청할 때 dto에 ordersIdx를 직접 넘겨주도록 수정 필요
+        Orders orders = ordersRepository.findById(dto.getOrdersIdx()) // 임시 로직
+                .orElseThrow(() -> new RuntimeException("주문 정보를 찾을 수 없습니다."));
+
+        // 3. 무조건 결제 성공 처리 및 PaymentHistory 저장
+        orders.setPaid(true);
+        orders.setPgPaymentId(dto.getPaymentId()); // "test_imp_1234" 같은 가짜 ID
+        ordersRepository.save(orders);
+
+        PaymentHistory paymentHistory = PaymentHistory.builder()
+                .user(orders.getUser())
+                .paymentName(orders.getHospital().getName() + " 예약금")
+                .amount((long) orders.getPaymentPrice())
+                .paymentMethod("앱결제(테스트)")
+                .paymentStatus("결제완료")
+                .reservationId(orders.getIdx())
+                .build();
+
+        paymentHistoryRepository.save(paymentHistory);
+    }
 }

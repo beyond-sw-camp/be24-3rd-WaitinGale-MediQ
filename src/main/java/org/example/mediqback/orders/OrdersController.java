@@ -28,6 +28,17 @@ public class OrdersController {
         return ResponseEntity.ok(BaseResponse.success(response));
     }
 
+    // OrdersController.java (성능 테스트용 임시 API)
+    @PostMapping("/test-verify")
+    public ResponseEntity testVerify(
+            @AuthenticationPrincipal AuthUserDetails user,
+            @RequestBody OrdersDto.VerifyReq dto
+    ) {
+        // 실제 외부 연동 코드가 있는 ordersService.verify() 대신 테스트용 메서드 호출
+        ordersService.testVerify(user, dto);
+        return ResponseEntity.ok("테스트 결제 완료");
+    }
+
     @PostMapping("/verify")
     public ResponseEntity verify(
             @AuthenticationPrincipal AuthUserDetails user,

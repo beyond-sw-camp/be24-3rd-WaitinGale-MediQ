@@ -1,13 +1,20 @@
 package org.example.mediqback.orders.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 public class OrdersDto {
+
+    // 기존 VerifyReq와 테스트용으로 추가한 필드를 하나로 합쳤습니다.
     @Builder
     @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class VerifyReq {
         private String paymentId;
+        private Long ordersIdx; // 성능 테스트 시나리오를 위해 추가!
     }
 
     @Builder
