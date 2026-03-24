@@ -1,8 +1,8 @@
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
-<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
-<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" width="100%">
+<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=D2B4BC&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&height=250&color=D2B4BC&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=waving&height=250&color=D2B4BC&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" width="100%">
 </picture>
 </p>
 
@@ -65,7 +65,6 @@
 | :---: | :--- |
 | **🌍 서비스 도메인** | [https://www.mediq.kro.kr](https://www.mediq.kro.kr) |
 | **📜 API 명세서 (Swagger)** | [Swagger 주소 입력](#) |
-| **🎨 기획 및 디자인** | [Figma 디자인 문서](https://www.figma.com/design/EdBkF3CGfamwsIXKMQiJQq/waitinGale?node-id=0-1&t=wz3RvfQ1GRJDqk0B-1/) |
 
 <br>
 
