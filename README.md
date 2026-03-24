@@ -1,8 +1,8 @@
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=soft&height=250&color=00B4D8&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
-<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=soft&height=250&color=00B4D8&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
-<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=soft&height=250&color=00B4D8&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25" width="100%">
+<source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false">
+<img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" width="100%">
 </picture>
 </p>
 
@@ -30,7 +30,7 @@
 
 | 권민석 | 김미정 | 노승찬 | 이한별 |
 | :---: | :---: | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/b1118e22-6b52-4e2b-871d-03458cebdfaf" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e6d2bbe-e8f6-4fd9-9200-74ff652d4d53" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e7f0f41-3c3d-4f51-b4fd-2b0d7dee85b6" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/452d5068-4d86-41f8-97d1-179f78cc0662" width="150" height="150" /> |
+| <img src="https://github.com/user-attachments/assets/19d001b7-cc93-48ff-96e3-5d0d3743ef2e" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e6d2bbe-e8f6-4fd9-9200-74ff652d4d53" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e7f0f41-3c3d-4f51-b4fd-2b0d7dee85b6" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/b4a0439f-ec7c-4ee7-ae61-6954b12d4693" width="150" height="150" /> |
 
 </div>
 | [GitHub](https://github.com/RIMIN0650) | [GitHub](https://github.com/mihub02) | [GitHub](https://github.com/seungchan-0629) | [GitHub](https://github.com/sole0714) |
