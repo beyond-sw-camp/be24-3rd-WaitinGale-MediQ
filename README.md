@@ -28,9 +28,9 @@
 
 <div align="center">
 
-| <img src="https://github.com/user-attachments/assets/b1118e22-6b52-4e2b-871d-03458cebdfaf" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e6d2bbe-e8f6-4fd9-9200-74ff652d4d53" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e7f0f41-3c3d-4f51-b4fd-2b0d7dee85b6" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/452d5068-4d86-41f8-97d1-179f78cc0662" width="150" height="150" /> |
+| <img src="https://github.com/user-attachments/assets/19d001b7-cc93-48ff-96e3-5d0d3743ef2e" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e6d2bbe-e8f6-4fd9-9200-74ff652d4d53" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/0e7f0f41-3c3d-4f51-b4fd-2b0d7dee85b6" width="150" height="150" /> | <img src="https://github.com/user-attachments/assets/b4a0439f-ec7c-4ee7-ae61-6954b12d4693" width="150" height="150" /> |
 | :---: | :---: | :---: | :---: |
-| 🐳 **권민석**<br/>[@RIMIN0650-git](https://github.com/RIMIN0650)  | 🐢 **김미정**<br/>[@mihub02](https://github.com/mihub02) | 🔥 **노승찬**<br/>[@seungchan-0629](https://github.com/seungchan-0629) | ⚽ **이한별**<br/>[@sole0714](https://github.com/sole0714) |
+| ☃️ **권민석**<br/>[@RIMIN0650-git](https://github.com/RIMIN0650)  | 🐢 **김미정**<br/>[@mihub02](https://github.com/mihub02) | 🔥 **노승찬**<br/>[@seungchan-0629](https://github.com/seungchan-0629) | 🔫 **이한별**<br/>[@sole0714](https://github.com/sole0714) |
 
 </div>
 <br>
@@ -64,8 +64,8 @@
 #### 🏥 위치 기반 병원 대기 현황 및 원격 예약
 사용자의 현재 위치를 기반으로 주변 병원을 조회하고, 실시간 대기 인원을 확인하여 대기열이 적은 병원으로 즉시 원격 예약을 도와주는 플랫폼입니다.
 
-#### 💊 근처 영업중인 약국 및 대기 정보 조회
-진료 후 가장 가까운 약국이나 야간 영업 약국을 확인하고, 예상 대기 시간을 안내받아 효율적인 의료 서비스 이용이 가능합니다.
+#### 💊 근처 영업중인 약국 및 정보 조회
+진료 후 가장 가까운 약국이나 야간 영업 약국을 확인하여 효율적인 의료 서비스 이용이 가능합니다.
 
 #### ✨ 주요 기능
 - **📍 실시간 위치 서비스**: LBS 기술을 활용한 내 주변 의료시설 탐색
