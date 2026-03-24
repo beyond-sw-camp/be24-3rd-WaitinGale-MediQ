@@ -1,6 +1,8 @@
 package org.example.mediqback.mypage;
 
 import lombok.RequiredArgsConstructor;
+import org.example.mediqback.addfamily.AddFamilyService;
+import org.example.mediqback.addfamily.model.FamilyDto;
 import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.medicalhistory.MedicalHistoryService;
 import org.example.mediqback.medicalhistory.model.MedicalHistoryDto;
@@ -9,9 +11,7 @@ import org.example.mediqback.paymenthistory.model.PaymentHistoryDto;
 import org.example.mediqback.user.model.AuthUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ public class MyPageController {
 
     private final MedicalHistoryService medicalHistoryService;
     private final PaymentHistoryService paymentHistoryService;
+    private final AddFamilyService addFamilyService;
 
     // 1. 진료 기록 탭 클릭 시 (또는 첫 화면)
     @GetMapping("/medical")
@@ -58,4 +59,17 @@ public class MyPageController {
         // 임시로 빈 배열 반환
         return ResponseEntity.ok(BaseResponse.success(List.of()));
     }
+
+    @PostMapping("/addfamily")
+    public ResponseEntity reg(
+            @AuthenticationPrincipal AuthUserDetails userDetails,
+            @RequestBody FamilyDto.Req dto) {
+        FamilyDto.Res result = addFamilyService.reg(dto);
+        return ResponseEntity.ok(result);
+    }
+
+//    @GetMapping("/familyinfo")
+//    public ResponseEntity familyinfo() {
+//
+//    }
 }
