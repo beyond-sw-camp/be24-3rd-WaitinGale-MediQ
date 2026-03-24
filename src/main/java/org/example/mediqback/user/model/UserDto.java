@@ -54,6 +54,7 @@ public class UserDto {
                     .build();
         }
     }
+
     @Schema(description = "회원가입 요청 DTO")
     @AllArgsConstructor
     @Getter

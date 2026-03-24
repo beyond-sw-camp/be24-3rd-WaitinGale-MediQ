@@ -1,5 +1,9 @@
 package org.example.mediqback.Surveyform;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.Surveyform.model.SurveyformDto;
@@ -10,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Surveyform API", description = "문진표 작성 API")
 @RestController
 @RequestMapping("/survey")
 @RequiredArgsConstructor
@@ -18,6 +23,11 @@ public class SurveyformController {
 
     private final SurveyformService surveyformService;
 
+    @Operation(summary = "문진표 제출", description = "사용자가 작성한 문진표 데이터를 제출합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "문진표 제출 성공"),
+            @ApiResponse(responseCode = "401", description = "로그인되지 않은 사용자")
+    })
     @PostMapping
     public ResponseEntity<?> submitSurvey(
             @AuthenticationPrincipal AuthUserDetails userDetails,

@@ -1,7 +1,8 @@
 package org.example.mediqback.orders;
 
-
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,9 @@ public class OrdersController {
     private final OrdersService ordersService;
 
     @Operation(summary = "결제 대기 주문서 생성", description = "프론트엔드에서 결제창을 띄우기 직전에 결제 대기 상태의 주문을 만듭니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "주문서 생성 성공")
+    })
     @PostMapping("/create")
     public ResponseEntity<BaseResponse> create(
             @AuthenticationPrincipal AuthUserDetails authUserDetails,
@@ -33,6 +37,9 @@ public class OrdersController {
 
     // OrdersController.java (성능 테스트용 임시 API)
     @Operation(summary = "결제 검증 (테스트용)", description = "실제 외부 PG사 연동 없이 테스트 결제를 완료 처리합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "테스트 결제 처리 완료")
+    })
     @PostMapping("/test-verify")
     public ResponseEntity testVerify(
             @AuthenticationPrincipal AuthUserDetails user,
@@ -44,6 +51,9 @@ public class OrdersController {
     }
 
     @Operation(summary = "포트원 결제 검증", description = "포트원 결제 완료 후 실제 결제 금액과 DB의 예약금을 검증하고 결제 완료 처리합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "결제 검증 및 확정 성공")
+    })
     @PostMapping("/verify")
     public ResponseEntity verify(
             @AuthenticationPrincipal AuthUserDetails user,
@@ -55,6 +65,9 @@ public class OrdersController {
 
     // 프론트엔드가 일정을 요청할 때 응답해주는 API
     @Operation(summary = "내 예약 일정 조회", description = "마이페이지에 보여줄 확정된 내 예약 일정(결제 완료건)을 가져옵니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "예약 일정 조회 성공")
+    })
     @GetMapping("/schedule")
     public ResponseEntity<?> getMySchedule(@AuthenticationPrincipal AuthUserDetails user) {
         List<Map<String, Object>> result = ordersService.getMySchedule(user);

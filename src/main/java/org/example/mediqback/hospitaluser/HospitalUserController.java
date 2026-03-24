@@ -1,5 +1,9 @@
 package org.example.mediqback.hospitaluser;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.hospitaluser.model.HospitalUserDto;
@@ -9,6 +13,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "HospitalUser API", description = "병원 관계자 계정 회원가입 및 로그인 API")
 @CrossOrigin
 @RestController
 @RequestMapping("/hospitaluser")
@@ -19,6 +24,10 @@ public class HospitalUserController {
     private final JwtUtil jwtUtil;
 
     // 병원 관계자 회원가입
+    @Operation(summary = "병원 관계자 회원가입", description = "새로운 병원 관계자 계정을 생성합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "회원가입 성공")
+    })
     @PostMapping("/signup")
     public ResponseEntity<BaseResponse> signup(@RequestBody HospitalUserDto.SignupReq dto) {
         HospitalUserDto.Res response = hospitalUserService.signup(dto);
@@ -26,6 +35,10 @@ public class HospitalUserController {
     }
 
     // 병원 관계자 로그인
+    @Operation(summary = "병원 관계자 로그인", description = "이메일과 비밀번호로 로그인하여 병원 관계자 토큰을 발급받습니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "로그인 성공")
+    })
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody HospitalUserDto.LoginReq dto) {
         // 서비스에서 이메일/비밀번호 검증 후 유저 정보 받아오기
