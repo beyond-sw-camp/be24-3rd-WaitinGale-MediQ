@@ -1,7 +1,12 @@
-<br>
-<img src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&rotate=0&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25&reversal=false" style="width: 120%;">
-
-<br>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=FFFFFF&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
+    
+    <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25">
+    
+    <img alt="MediQ Banner" src="https://capsule-render.vercel.app/api?type=venom&height=250&color=bb8378&fontColor=333333&text=🏥MediQ&fontSize=70&fontAlignY=30&animation=fadeIn&desc=병원%20대기%20관리%20시스템%20플랫폼&descSize=25" width="100%">
+  </picture>
+</p>
 
 
 <br>
@@ -79,31 +84,5 @@
 
 ---
 
-## 🎥 주요 기능 구현 영상
+## 🎥 주요 기능 성능 개선 전후
 
-<details>
-<summary><b>🔐 회원가입 및 로그인</b></summary>
-<div align="center">
-<br>
-<img src="https://github.com/user-attachments/assets/c2dbeee7-c155-4c19-8577-566a469c88db" width="80%" />
-<img src="https://github.com/user-attachments/assets/7c2e6bc5-9fa6-447c-b1a7-a4cfad305c7d" width="80%" />
-</div>
-</details>
-
-<details>
-<summary><b>🏥 주변 병원 찾기 및 예약</b></summary>
-<div align="center">
-<br>
-<img src="https://github.com/user-attachments/assets/c71d0194-9736-4a30-bf0d-0f4484104081" width="80%" />
-<img src="https://github.com/user-attachments/assets/5d9a33cd-7206-43fd-9b87-b08a6e587331" width="80%" />
-</div>
-</details>
-
-<details>
-<summary><b>💊 약국 조회 및 마이페이지</b></summary>
-<div align="center">
-<br>
-<img src="https://github.com/user-attachments/assets/6523005e-7967-4ad4-ad54-c0a8f5ec37c0" width="80%" />
-<img src="https://github.com/user-attachments/assets/256542d6-c549-43a6-98cb-8e491fe38172" width="80%" />
-</div>
-</details>
