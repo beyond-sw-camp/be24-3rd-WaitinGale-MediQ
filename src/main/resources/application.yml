@@ -78,6 +78,25 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  metrics:
+    tags:
+      application: 3.34.143.70:9100
+  tracing:
+    sampling:
+      probability: 1.0  # 모든 요청에 대한 데이터를 수집하겠다
+  otlp:
+    tracing:
+      endpoint: http://43.203.224.218:4318/v1/traces
+
 project:
   aes:
     key: aessecretkey01234567890123456789
