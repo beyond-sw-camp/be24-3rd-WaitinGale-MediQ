@@ -101,7 +101,7 @@
 > 대규모 트래픽 발생 및 병원 실시간 예약 부하를 분산하기 위해 설계한 이상적인 타겟 아키텍처입니다.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/dc8455f0-ab4f-4bf4-b01b-5b487fd784ff" width="558" alt="Image" />
+  <img width="558" alt="Image" src="https://github.com/user-attachments/assets/1d1d884a-49c2-42f6-90af-b4ba87f2c018" />
 </div>
 
 - **L4/L7 Load Balancer**: 예약 요청이 몰릴 때 다수의 서버 인스턴스로 트래픽 분산
