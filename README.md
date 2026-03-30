@@ -63,7 +63,7 @@
 
 | 분류 | 링크 |
 | :---: | :--- |
-| **🌍 서비스 도메인** | [https://www.mediq.kro.kr](https://www.mediq.kro.kr) |
+| **🌍 서비스 도메인** | [https://www.medimedi.kro.kr](https://www.medimedi.kro.kr) |
 | **📜 API 명세서 (Swagger)** | [Swagger]]([http://43.203.224.218:8080/swagger-ui/index.html](https://43.203.224.218/swagger-ui/index.html#/User%20API/signup)) |
 
 <br>
