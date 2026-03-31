@@ -50,7 +50,6 @@
 
 ### 🗄 Database & Cache
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 
 ### ☁️ Infrastructure & CI/CD
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
@@ -64,8 +63,8 @@
 
 | 분류 | 링크 |
 | :---: | :--- |
-| **🌍 서비스 도메인** | [https://www.mediq.kro.kr](https://www.mediq.kro.kr) |
-| **📜 API 명세서 (Swagger)** | [Swagger]]([http://43.203.224.218:8080/swagger-ui/index.html](https://43.203.224.218/swagger-ui/index.html#/User%20API/signup)) |
+| **🌍 서비스 도메인** | [https://www.medimedi.kro.kr](https://www.medimedi.kro.kr) |
+| **📜 API 명세서 (Swagger)** | [Swagger](https://43.203.224.218/swagger-ui/index.html#/User%20API/signup)|
 
 <br>
 
@@ -101,7 +100,7 @@
 > 대규모 트래픽 발생 및 병원 실시간 예약 부하를 분산하기 위해 설계한 이상적인 타겟 아키텍처입니다.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/dc8455f0-ab4f-4bf4-b01b-5b487fd784ff" width="558" alt="Image" />
+  <img width="558" alt="Image" src="https://github.com/user-attachments/assets/1d1d884a-49c2-42f6-90af-b4ba87f2c018" />
 </div>
 
 - **L4/L7 Load Balancer**: 예약 요청이 몰릴 때 다수의 서버 인스턴스로 트래픽 분산
