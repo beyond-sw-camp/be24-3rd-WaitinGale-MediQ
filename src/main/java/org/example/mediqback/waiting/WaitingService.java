@@ -11,6 +11,7 @@ import org.example.mediqback.queue.model.Queue;
 import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
 import org.jose4j.lang.JoseException;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -72,15 +73,40 @@ public class WaitingService {
         return (waiting != null) ? waiting.getWaitingNumber() : -1;
     }
 
-    // 현재 대기열 정보 가져오기
-    public List<WaitingDto.ListRes> findListByHospitalId(Long hospitalIdx) {
-        List<Waiting> waitingEntityList = waitingRepository.findAllByHospitalIdx(hospitalIdx);
-        List<WaitingDto.ListRes> listResDtoList = new ArrayList<>();
-        for (Waiting waiting : waitingEntityList) {
-            listResDtoList.add(WaitingDto.ListRes.from(waiting));
+////     현재 대기열 정보 가져오기
+//    public List<WaitingDto.ListRes> findListByHospitalId(Long hospitalIdx) {
+//        List<Waiting> waitingEntityList = waitingRepository.findAllByHospitalIdx(hospitalIdx);
+//        List<WaitingDto.ListRes> listResDtoList = new ArrayList<>();
+//        for (Waiting waiting : waitingEntityList) {
+//            listResDtoList.add(WaitingDto.ListRes.from(waiting));
+//        }
+//        return listResDtoList;
+//    }
+
+
+
+    public Page<WaitingDto.ListRes> findListByHospitalIdx(Long hospitalIdx, int page, int size) {
+        // 1. 페이징 및 정렬 조건 설정 (최신순 등 비즈니스에 맞게 설정 가능)
+        Pageable pageable = PageRequest.of(page, size, Sort.by("idx").ascending());
+
+        // 2. DB에서 필요한 구간의 데이터만 조회 (성능 향상의 핵심)
+        Page<Waiting> waitingPage = waitingRepository.findAllByHospitalIdx(hospitalIdx, pageable);
+
+        // 3. 성능을 위한 for문 루프 및 ArrayList 용량 최적화
+        List<Waiting> content = waitingPage.getContent();
+        List<WaitingDto.ListRes> listResDtoList = new ArrayList<>(content.size()); // 용량 미리 확보
+
+        for (int i = 0; i < content.size(); i++) {
+            listResDtoList.add(WaitingDto.ListRes.from(content.get(i)));
         }
-        return listResDtoList;
+
+        // 4. Page 구현체로 감싸서 반환 (전체 페이지 수 등의 메타데이터 포함)
+        return new PageImpl<>(listResDtoList, pageable, waitingPage.getTotalElements());
     }
+
+
+
+
 
     // 대기열 삭제하기
     public WaitingDto.DeleteRes deleteRegistration(Long hospitalIdx, Long userIdx) {

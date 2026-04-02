@@ -1,11 +1,11 @@
 package org.example.mediqback.user;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mediqback.common.exception.BaseException;
 import org.example.mediqback.user.model.AuthUserDetails;
 import org.example.mediqback.user.model.EmailVerify;
 import org.example.mediqback.user.model.User;
 import org.example.mediqback.user.model.UserDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

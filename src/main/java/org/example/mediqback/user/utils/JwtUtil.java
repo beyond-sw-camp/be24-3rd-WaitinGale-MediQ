@@ -13,10 +13,10 @@ import java.util.Date;
 @Component
 public class JwtUtil {
     // application.yml 에 있는 설정값을 가져옵니다.
-    @Value("${jwt.secret}")
+    @Value("${JWT_SECRET}")
     private String key;
 
-    @Value("${jwt.expire}")
+    @Value("${JWT_EXPIRE}")
     private int expire;
 
     // 비밀키를 암호화 알고리즘에 맞게 변환

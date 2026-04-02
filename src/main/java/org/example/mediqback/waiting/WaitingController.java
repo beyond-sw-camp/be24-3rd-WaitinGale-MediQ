@@ -7,19 +7,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.common.model.BaseResponse;
 import org.example.mediqback.queue.QueueService;
-import org.example.mediqback.queue.model.Queue;
-import org.example.mediqback.queue.model.QueueDto;
 import org.example.mediqback.user.model.AuthUserDetails;
-import org.example.mediqback.waiting.model.Waiting;
 import org.example.mediqback.waiting.model.WaitingDto;
 import org.jose4j.lang.JoseException;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Tag(name = "Waiting API", description = "환자 병원 대기열(접수) 관리 API")
@@ -119,18 +116,49 @@ public class WaitingController {
 
 
 
-    // 검색한 병원의 대기열 정보 불러오기
-    @Operation(summary = "특정 병원의 대기열 목록 조회", description = "검색한 병원의 전체 대기열 정보를 불러옵니다.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "목록 조회 성공")
-    })
+////     검색한 병원의 대기열 정보 불러오기 ( 성능 향상 전 버전 )
+//    @Operation(summary = "특정 병원의 대기열 목록 조회", description = "검색한 병원의 전체 대기열 정보를 불러옵니다.")
+//    @ApiResponses({
+//            @ApiResponse(responseCode = "200", description = "목록 조회 성공")
+//    })
+//    @GetMapping("/queue/list/{hospitalIdx}")
+//    public ResponseEntity findQueueListByHospitalIdx(
+//            @PathVariable("hospitalIdx") Long hospitalIdx
+//    ) {
+//        List<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalId(hospitalIdx);
+//        return ResponseEntity.ok(waitingList);
+//    }
+
+
+//     검색한 병원의 대기열 정보 불러오기 ( 성능 향상 후 버전 )
+    @Operation(summary = "특정 병원의 대기열 목록 조회", description = "검색한 병원의 대기열을 페이징하여 조회합니다.")
     @GetMapping("/queue/list/{hospitalIdx}")
-    public ResponseEntity findQueueListByHospitalIdx(
-            @PathVariable("hospitalIdx") Long hospitalIdx
+    public ResponseEntity<Page<WaitingDto.ListRes>> findQueueListByHospitalIdx(
+            @PathVariable("hospitalIdx") Long hospitalIdx,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size
     ) {
-        List<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalId(hospitalIdx);
+        // Service 호출 시 사용자가 요청한 페이지 정보 전달
+        Page<WaitingDto.ListRes> waitingList = waitingService.findListByHospitalIdx(hospitalIdx, page, size);
         return ResponseEntity.ok(waitingList);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // 대기열 정보를 불러올 때 앞의 사람까지 전부 불러올 필요 없이
     // 제일 마지막 번호만 불러오면 될 듯

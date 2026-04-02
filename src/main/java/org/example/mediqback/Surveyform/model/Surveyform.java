@@ -1,7 +1,10 @@
 package org.example.mediqback.Surveyform.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.example.mediqback.common.model.BaseEntity;
 import org.example.mediqback.user.model.User;
 

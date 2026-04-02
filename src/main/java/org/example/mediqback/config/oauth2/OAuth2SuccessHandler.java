@@ -1,12 +1,13 @@
 package org.example.mediqback.config.oauth2;
 
-import org.example.mediqback.user.model.AuthUserDetails;
-import org.example.mediqback.user.utils.JwtUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.mediqback.user.model.AuthUserDetails;
+import org.example.mediqback.user.utils.JwtUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,9 @@ import java.io.IOException;
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final JwtUtil jwtUtil;
+
+    @Value("${app.frontend-url}")
+    private String frontendUrl;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -46,6 +50,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         //  URL에 토큰을 덕지덕지 붙이지 않고, 깔끔하게 메인 페이지로만 리다이렉트!
-        getRedirectStrategy().sendRedirect(request, response, "http://localhost:5173/");
+        getRedirectStrategy().sendRedirect(request, response, frontendUrl);
     }
 }

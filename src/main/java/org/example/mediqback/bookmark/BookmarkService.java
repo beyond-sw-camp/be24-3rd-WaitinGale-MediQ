@@ -1,11 +1,12 @@
 package org.example.mediqback.bookmark;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.mediqback.bookmark.model.Bookmark;
 import org.example.mediqback.bookmark.model.BookmarkDto;
 import org.example.mediqback.user.model.User;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class BookmarkService {
     }
 
     // 북마크 상세 조회
+    @Transactional(readOnly = true)
+    @Cacheable(value = "bookmark", key = "#idx")
     public BookmarkDto.Res read(Long idx) {
         Bookmark bookmark = bookmarkRepository.findById(idx).orElseThrow(
                 () -> new RuntimeException("북마크 X")
@@ -36,6 +39,7 @@ public class BookmarkService {
     }
 
     // 북마크 삭제
+    @org.springframework.cache.annotation.CacheEvict(value = "bookmark", key = "#idx")  // 북마크 삭제 시 캐시도 함께 제거
     @Transactional
     public void delete(Long idx) {
         Bookmark bookmark = bookmarkRepository.findById(idx).orElseThrow(

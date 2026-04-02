@@ -19,22 +19,22 @@ public class FindUserInfoService {
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    // 1. 아이디(이메일) 찾기 (오직 이름으로만)
+    //  아이디(이메일) 찾기 (오직 이름으로만)
     @Transactional(readOnly = true)
     public String findEmail(FindUserInfoDto.FindIdReq req) {
 
-        // 이름으로 유저 목록 조회
-        List<User> users = userRepository.findByName(req.getName());
+        // User 엔티티 대신 가벼운 String(이메일) 리스트를 바로 받음
+        List<String> emails = userRepository.findEmailsByName(req.getName());
 
-        if (users.isEmpty()) {
+        if (emails.isEmpty()) {
             throw new IllegalArgumentException("입력하신 이름으로 가입된 계정이 없습니다.");
         }
 
         // 우선 첫 번째 유저의 이메일을 마스킹 처리하여 반환
-        return maskEmail(users.get(0).getEmail());
+        return maskEmail(emails.get(0));
     }
 
-    // 2. 임시 비밀번호 발급 및 메일 전송
+    //  임시 비밀번호 발급 및 메일 전송
     @Transactional
     public void sendTempPassword(FindUserInfoDto.FindPwReq req) {
         User user = userRepository.findByEmail(req.getEmail())

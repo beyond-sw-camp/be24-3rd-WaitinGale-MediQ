@@ -1,6 +1,8 @@
 package org.example.mediqback.waiting;
 
 import org.example.mediqback.waiting.model.Waiting;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -8,7 +10,9 @@ import java.util.List;
 public interface WaitingRepository extends JpaRepository<Waiting, Long> {
     Waiting findByUserIdx(Long userIdx);
 
-    List<Waiting> findAllByHospitalIdx(Long hospitalId);
+//    List<Waiting> findAllByHospitalIdx(Long hospitalIdx);
+
+    Page<Waiting> findAllByHospitalIdx(Long hospitalIdx, Pageable pageable);
 
     Waiting findByHospitalIdxAndUserIdx(Long hospitalIdx, Long userIdx);
 

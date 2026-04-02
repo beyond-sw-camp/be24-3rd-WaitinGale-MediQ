@@ -1,12 +1,12 @@
 package org.example.mediqback.config;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.example.mediqback.config.filter.JwtFilter;
 import org.example.mediqback.config.oauth2.OAuth2AuthorizationRequestRepository;
 import org.example.mediqback.config.oauth2.OAuth2SuccessHandler;
 import org.example.mediqback.user.CustomOAuth2UserService;
-
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,6 +35,9 @@ public class SecurityConfig {
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final OAuth2AuthorizationRequestRepository oAuth2AuthorizationRequestRepository;
 
+    @Value("${app.cors.allowed-origins}")
+    private List<String> allowedOrigins;
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.sessionManagement(session ->
@@ -56,7 +59,7 @@ public class SecurityConfig {
                 // 누구나 접근 가능한 곳
                 .requestMatchers
                         (
-                        "/user/login", "/user/signup", "/user/verify", "/hospitaluser/login", "/hospitaluser/signup"
+                                "/user/login", "/user/signup", "/user/verify", "/hospitaluser/login", "/hospitaluser/signup"
                         ).permitAll()
                 // 로그인이 꼭 필요한 곳
                 .requestMatchers("/mypage/**").authenticated()
@@ -89,8 +92,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("https://www.sole07.kro.kr",
-                "http://localhost:5173"));
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
 

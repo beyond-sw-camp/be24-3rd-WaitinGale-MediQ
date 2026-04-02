@@ -2,7 +2,6 @@ package org.example.mediqback.notification.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import org.example.mediqback.waiting.model.Waiting;
 
 import java.util.Map;
 
