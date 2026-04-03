@@ -64,7 +64,7 @@
 | 분류 | 링크 |
 | :---: | :--- |
 | **🌍 서비스 도메인** | [https://www.medimedi.kro.kr](https://www.medimedi.kro.kr) |
-| **📜 API 명세서 (Swagger)** | [Swagger](http://54.180.116.11:8080/swagger-ui/index.html#)|
+| **📜 API 명세서 (Swagger)** | [Swagger](http://www.oringr.kro.kr:8080/swagger-ui/index.html#)|
 
 <br>
 
