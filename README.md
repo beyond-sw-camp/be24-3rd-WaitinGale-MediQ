@@ -115,4 +115,31 @@
 ## 무중단 버전 변경 테스트
 <img width="1224" height="864" alt="Image" src="https://github.com/user-attachments/assets/19f5c3b6-38a4-480c-9c41-707d4de92fe9" />
 
+## 무중단 배포 테스트 중 부하 테스트
+<img width="1919" height="904" alt="Image" src="https://github.com/user-attachments/assets/d5d6b9ff-2adb-44cb-8a71-44aed408789f" />
+
+## 시스템 아키텍처 (블루)
+<img width="962" height="851" alt="Image" src="https://github.com/user-attachments/assets/d258fcd5-a60c-4fdf-aeb9-4fafca23c757" />
+
+## 시스템 아키텍처 (그린)
+<img width="967" height="852" alt="Image" src="https://github.com/user-attachments/assets/b28004bf-609c-4b6b-9ad3-8d356f483865" />
+
+
+서비스의 안정성과 가용성을 극대화하기 위해 블루-그린 배포 전략을 채택하였습니다. 운영 중인 서버 환경과 동일한 신규 환경을 구축하여 배포 시 발생하는 리스크를 최소화합니다.
+
+2. 도입 배경 및 목적
+무중단 서비스 : 배포 과정에서 트래픽을 한 번에 전환함으로써 사용자에게 중단 없는 서비스를 제공합니다.
+
+신속한 롤백 : 배포 직후 결함 발생 시, 로드밸런서의 타겟 그룹을 이전 환경으로 즉시 전환하여 장애 시간을 분 단위에서 초 단위로 단축합니다.
+
+운영 환경 검증: 실제 프로덕션 환경과 동일한 조건에서 신규 버전을 최종 테스트한 후 트래픽을 허용함으로써 배포 신뢰도를 높입니다.
+
+3. 배포 프로세스
+Standby 환경 구성: 현재 서비스 중인 Blue 환경과 별개로 Green 환경에 신규 빌드 아티팩트를 배포합니다.
+
+상태 검사 : Green 환경의 정상 동작 여부를 사전에 확인합니다.
+
+트래픽 전환 : 로드밸런서 설정을 변경하여 모든 유저 트래픽을 Green으로 일제히 유입시킵니다.
+
+모니터링 및 정리: 신규 버전의 안정성을 확인한 후, 일정 시간 뒤 이전 버전의 자원을 회수하거나 대기 상태로 유지합니다.
 
