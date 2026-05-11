@@ -111,4 +111,8 @@
 - **Redis Cache**: 잦은 조회가 발생하는 실시간 대기열 데이터를 캐싱하여 DB 병목 현상 방지
 
 
+
+## 무중단 버전 변경 테스트
 <img width="1224" height="864" alt="Image" src="https://github.com/user-attachments/assets/19f5c3b6-38a4-480c-9c41-707d4de92fe9" />
+
+
